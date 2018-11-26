@@ -210,3 +210,18 @@ $adsi.Children | where {$_.SchemaClassName -eq 'user'} | Foreach-Object {
     $_ | Select-Object @{n='UserName';e={$_.Name}},@{n='Groups';e={$groups -join ';'}}
 }
 
+# get groups the template (existing) user is a member of:
+Get-ADPrincipalGroupMembership -Identity:"CN=Milan van Hoek,OU=Gebruikers,DC=keygene,DC=local"
+Get-ADPrincipalGroupMembership -Identity rwo
+
+# save the distinguishedName for each group
+# enter the existing user 
+$SrcUser = 'rwo'
+# store user's groups
+$SrcUserGroups = Get-ADPrincipalGroupMembership -Identity $SrcUser | Select-Object -ExpandProperty distinguishedName
+# add saved groups to new user
+$DestUser = 'ttuu'
+# loop door de groepen en voeg deze toe
+foreach ( $group in $SrcUserGroups ) {
+Add-ADPrincipalGroupMembership -Identity $DestUser -MemberOf "$group" -Server:"eunomia2016.keygene.local" -WhatIf
+}
