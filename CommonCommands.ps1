@@ -156,8 +156,8 @@ Restart-NetAdapter -Name "Local Area Connection"
 Enable-PSRemoting -force
 
 
-Invoke-Command -ComputerName SEC-MANAGE -ScriptBlock { Get-EventLog Security -Newest 10 }
-Invoke-Command -ComputerName sec-trivia -ScriptBlock { Get-Service -name Merx.OMS.Service.exe } 
+Invoke-Command -ComputerName mydc-01 -ScriptBlock { Get-EventLog Security -Newest 10 }
+Invoke-Command -ComputerName myprintsrv-01 -ScriptBlock { Get-Service -name Docker.exe } 
 
 Get-PSSession -ComputerName localhost
 
@@ -209,7 +209,7 @@ cd wsman
 
 # Hardware
 
-get-wmiobject Win32_PhysicalMemory -ComputerName sec-manage-sc |
+get-wmiobject Win32_PhysicalMemory -ComputerName mydc-01 |
 select @{Label="Device Location";Expression={$_.DeviceLocator}},`
 DataWidth, @{Label="Capacity";Expression={"{0,12:n0} MB" -f ($_.Capacity/1mb)}}, PartNumber, SerialNumber, Speed
 
@@ -227,10 +227,10 @@ Get-WmiObject Win32_systemEnclosure -ErrorAction SilentlyContinue -computerName 
 foreach {Write-Host "$i Chassistype is:" $_.Chassistypes}
 
 get-wmiobject -Class win32_computersystem -computername localhost | fl *
-Get-WmiObject -class win32_logicaldisk -ComputerName auto-506
+Get-WmiObject -class win32_logicaldisk -ComputerName PC-506
 
 # get NIC
-Get-WmiObject -class win32_networkadapterconfiguration -computername SABU-009| format-table -wrap | 
+Get-WmiObject -class win32_networkadapterconfiguration -computername PC-009| format-table -wrap | 
 out-file -width 256 -filepath d:\scripts\networkadapter.txt
 
 # Get IP Addresses
@@ -247,12 +247,12 @@ Add-Type -AssemblyName System.Windows.Forms
 
 
 # get OS
-$comp = 'sec-nz-dc-02.ams.securities.local'
+$comp = 'mydc-01.incharge-it.local'
 $comp ; (Get-WmiObject Win32_OperatingSystem -ComputerName $comp ).NameOut
 
 
-Get-WmiObject -Class Win32_product -ComputerName sec-hyperv-003 | Out-File d:\temp\hv003.txt 
-Get-WmiObject -Class Win32_product -ComputerName sec-hyperv-002 -Filter {Name -like "*" } 
+Get-WmiObject -Class Win32_product -ComputerName mydc-03 | Out-File d:\temp\hv003.txt 
+Get-WmiObject -Class Win32_product -ComputerName mydc-02 -Filter {Name -like "*" } 
 
 Get-WmiObject -Class Win32_product -ComputerName localhost |ft name, ident* 
 $ci = Get-CimInstance -ClassName win32_product -Computername localhost | Where-Object  {$_.IdentifyingNumber -eq "{CDFB453F-5FA4-4884-B282-F46BDFC06051}"} 
@@ -286,7 +286,7 @@ Get-LatestArticles
 Dir $env:windir | Where-Object { $_.Length -gt 1MB } # PS2
 Dir $env:windir | Where-Object Length -gt 1MB   # PS3
 
-get-childitem -Path s:\ |where {$_.Name -like "research_backup_$((get-date).tostring("yyyy_MM_dd"))_*.bak"}
+get-childitem -Path s:\ |where {$_.Name -like "my_backup_$((get-date).tostring("yyyy_MM_dd"))_*.bak"}
  
  # Shares
 $u = "te.st"
@@ -396,9 +396,9 @@ foreach ($c in $computers)
 
 
 
- $wi = Get-WmiObject -Class win32_product -Computername sec-hyperv-020 | Where-Object  {($_.IdentifyingNumber -eq  "{5010A712-721E-4B45-8ED2-6AF5338EF697}") -or ($_.IdentifyingNumber -eq  "{DA9CF191-5E6A-4F96-98AD-9DB99BE611C0}")  }
+ $wi = Get-WmiObject -Class win32_product -Computername mydc-020 | Where-Object  {($_.IdentifyingNumber -eq  "{5010A712-721E-4B45-8ED2-6AF5338EF697}") -or ($_.IdentifyingNumber -eq  "{DA9CF191-5E6A-4F96-98AD-9DB99BE611C0}")  }
 
- Get-service -ComputerName sec-hyperv-020
+ Get-service -ComputerName mydc-020
 
  (Get-WmiObject -Class win32_product -Filter "IdentifyingNumber='{5010A712-721E-4B45-8ED2-6AF5338EF697}'" -ComputerName sec-hyperv-020).Uninstall()
  (Get-WmiObject -Class win32_product -Filter "IdentifyingNumber='{DA9CF191-5E6A-4F96-98AD-9DB99BE611C0}'" -ComputerName sec-hyperv-020).Uninstall()

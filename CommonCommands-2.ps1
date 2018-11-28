@@ -14,7 +14,7 @@ Get-Service | Export-Clixml -Path D:\LabOutput\Services.xml
 Get-Content D:\LabOutput\Procs.txt 
 
 get-process | where { $_.workingset -gt 100mb}
-(dir $home\Documents -file).where({$_.lastwritetime.Year -le 2015})
+(dir $home\Documents -file).where({$_.lastwritetime.Year -le 2018})
 if ($PSVersionTable.PSVersion.Major -ge 3) { "OK" }
 
 
@@ -40,7 +40,7 @@ Get-Process | Select-Object -Property Name, Id, @{name='VM(MB)';expression={$_.V
  Get-Process | Where-Object -
  Get-Command -Noun *object*
 
-$myservice = get-service -computername test.server.local | where {$_.name -like "*SNS*"}
+$myservice = get-service -computername test.server.local | where {$_.name -like "*Docker*"}
 $myservice |format-list Name,Status,StartType
 
 
@@ -92,7 +92,7 @@ Remove-Job
 get-command -verb Out*
 get-command -noun *proces*
 
-$servers = "eq-manage-01","sec-manage4","ix-print-01"
+$servers = "mydc-01","myprint01","mymanage02"
 $servers | foreach {
   $computername = $_
   #Write-Host "Processing $computername" -ForegroundColor green
