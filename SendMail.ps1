@@ -6,7 +6,7 @@ Send-MailMessage -From richard_dewolff@hotmail.com `
     -Credential (Get-Credential richard_dewolff@hotmail.com) `
     -To richard.dewolff@gmail.com `
     -Subject " Hello from the demo" `
-    -Body " This is a test from powershell wirh the sens-mailmessage cmdlet.
+    -Body " This is a test from powershell with the send-mailmessage cmdlet.
     This is line 2
     This is line 3"
 

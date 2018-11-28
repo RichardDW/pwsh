@@ -1,5 +1,14 @@
 function DummyFunctionToPreventAccidentalRunning {
 
+# Instead of dummy function use:
+
+# This keeps me from running the whole script in case I accidentally hit F5
+if (1 -eq 1) { exit } 
+
+
+# To run an executable from within powershell prepend the command
+# with an &
+
 # Help
 Get-Help
 get-help Invoke-Command -Online
@@ -404,6 +413,21 @@ foreach ($c in $computers)
  (Get-WmiObject -Class win32_product -Filter "IdentifyingNumber='{DA9CF191-5E6A-4F96-98AD-9DB99BE611C0}'" -ComputerName sec-hyperv-020).Uninstall()
 
 
+ $ Search thru a list
+ foreach($line in Get-Content .\file.txt) {
+    if($line -match $regex){
+        # Work here
+    }
+}
+
+
+Get-Content .\file.txt | ForEach-Object {
+    if($_ -match $regex){
+        # Work here
+    }
+}
+ 
+ 
  
  
 } # end DummyFunctionToPreventAccidentalRunning
