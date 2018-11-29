@@ -1,4 +1,4 @@
-win-ps
+pwsh
 ======
 
-My Windows PowerShell scripts
+My PowerShell scripts
