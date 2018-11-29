@@ -1,7 +1,7 @@
 ﻿## Get the status of specific services running on DC's ####################################################
 # List of domain controllers
 # create a static list OR
-$dcs = "mydc-01", "mydc-02", "mydc-03"
+$dcs = "mydc-01", "mydc-02", "mydc-03", "my-test-01"
 # get list of Domain Controllers from AD
 $dcs = (Get-Addomain).ReplicaDirectoryServers
 
