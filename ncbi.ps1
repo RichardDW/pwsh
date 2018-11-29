@@ -1,5 +1,22 @@
-#################################################################################
+<#
+.SYNOPSIS
+   This program will read a text file with SRA numbers to download
+   from the NCBI website https://www.ncbi.nlm.nih.gov/
+.DESCRIPTION
+   This program downloads SRA files from the NCBI website 
+.PARAMETER <paramName>
+   <Description of script parameter>
+.EXAMPLE
+   <An example of using the script>
+#>
 
+
+#################################################################################
+# Prerequisites:
+# SRA Toolkit - https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=software
+# IBM Aspera Connect Client - 
+
+#
 # get list with the requested downloads
 # goto NCBI site with a project code; https://www.ncbi.nlm.nih.gov/sra/?term=PRJNA353001
 # and select "Send results to Run Selector and download Accession List
