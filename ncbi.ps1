@@ -9,10 +9,11 @@
    https://www.ncbi.nlm.nih.gov/sra/?term=PRJNA397453
    and select "Send results to Run Selector and download Accession List
    Files will, by default, be placed in C:\Users\<username>\ncbi\public\sra
-   This can be changed by running the bin\vdb-config 
+   This can be changed by running the bin\vdb-config -i
    #################################################################################
    Prerequisites:
    SRA Toolkit - https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=software
+   The Aspera Connect Client will speed up downloads instead of transferring over https
    IBM Aspera Connect Client - https://downloads.asperasoft.com/connect2/
 .PARAMETER <paramName>
    <Description of script parameter>
@@ -20,20 +21,28 @@
    <An example of using the script>
 #>
 
-# $srrFile contains the location of the the SRA Accession list
-[string]$srrFile = "C:\sra\SRR_Acc_List.txt"
-# Here the failed downloads will be wriiten for further processing
-[string]$srrFailedFile = "C:\sra\SRR_FailedDL_List.txt"
-# Executable to run from the SRA Toolkit
-# prefetch will get the files in SRA format
-[string]$toolExe = "C:\sra\sratoolkit\bin\prefetch.exe"
-# maximum download size argument for prefetch, use max size
-[string]$arg_maxDLsize = "999G"
-# path to the ascp executable and keyfile to enable downloads via Aspera Connect (instead of http)
-[string]$arg_ascp = "c:\Program Files (x86)\Aspera\Aspera Connect\bin\ascp.exe|c:\Program Files (x86)\Aspera\Aspera Connect\etc\asperaweb_id_dsa.openssh"
-# Location for the downloaded SRA files.
-# This can be set with vdb-config from the SRA Toolkit (/path/to/toolkit/bin)
-[string]$sraDLlocation = "D:\ncbi\sra"
+function InitVars {
+   # $srrFile contains the location of the the SRA Accession list
+   [string]$srrFile = "C:\sra\SRR_Acc_List.txt"
+   # Here the failed downloads will be wriiten for further processing
+   [string]$srrFailedFile = "C:\sra\SRR_Failed_Acc_List.txt"
+   # Executable to run from the SRA Toolkit
+   # prefetch will get the files in SRA format
+   [string]$toolExe = "C:\sra\sratoolkit\bin\prefetch.exe"
+   # maximum download size argument for prefetch, use max size
+   [string]$arg_maxDLsize = "999G"
+   # path to the ascp executable and keyfile to enable downloads via Aspera Connect (instead of http)
+   [string]$arg_ascp = "c:\Program Files (x86)\Aspera\Aspera Connect\bin\ascp.exe|c:\Program Files (x86)\Aspera\Aspera Connect\etc\asperaweb_id_dsa.openssh"
+   # Location for the downloaded SRA files.
+   # This can be set with vdb-config from the SRA Toolkit (/path/to/toolkit/bin/vdb-config -i)
+   [string]$sraDLlocation = "D:\ncbi\sra"
+}
+
+function CheckVars {
+
+
+}
+
 
 function GetDownload {            
 
@@ -44,9 +53,9 @@ function GetDownload {
    begin {}            
    process {
       # get total number of items 
-      [string] $total_dl = Get-Content $srrFile | Measure-Object –Line |Select-Object -ExpandProperty Lines
+      [string]$total_dl = Get-Content $srrFile | Measure-Object –Line |Select-Object -ExpandProperty Lines
 
-      [int] $processed_dl = 0
+      [int]$processed_dl = 0
          
       #foreach($line in [System.IO.File]::ReadLines($srrFile))
       foreach($line in (Get-Content $srrFile)) {
@@ -92,6 +101,7 @@ function Convert2Fastq {
 
 
 function Main {
+   InitVars
    GetDownload
    CheckDownload  
 }
