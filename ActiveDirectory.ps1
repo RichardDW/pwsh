@@ -321,6 +321,37 @@ function DummyUse {
     # Make usr change password
     Set-ADUser -ChangePasswordAtLogon:$true -Identity:"CN=Richie Meisterburger,OU=Gebruikers,DC=incharge-it,DC=local" -Server:"eunomia2016.incharge-it.local"
     
-    
+    # Enable remoting on workstation
+winrm qc
+Enable-PSRemoting -Force
+
+
+############ Reset RDP ###################
+$clientvm="clientvm-ncq"  
+
+$rdpport=3389  # RDP port 3389 
+
+# Test if machine is available
+Test-Connection $clientvm
+
+# test if rdp port is available
+Test-NetConnection -ComputerName $clientvm -Port $rdpport
+
+# Disable Remote Desktop
+Invoke-Command –Computername $clientvm –ScriptBlock {Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name "fDenyTSConnections" –Value 1}
+
+# restart the remote desktop service
+Invoke-Command –Computername $clientvm –ScriptBlock {Stop-Service -Name UMRDPService}
+Invoke-Command –Computername $clientvm –ScriptBlock {Stop-Service -Name Termservice}
+Invoke-Command –Computername $clientvm –ScriptBlock {Start-Service -Name Termservice}
+Invoke-Command –Computername $clientvm –ScriptBlock {Start-Service -Name UMRDPService}
+
+# Enable Remote Desktop
+Invoke-Command –Computername $clientvm –ScriptBlock {Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name "fDenyTSConnections" –Value 0}
+
+################### End of Reset RDP ##################################
+
+
+
     
     } # End DummyUse
