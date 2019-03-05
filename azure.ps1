@@ -34,8 +34,8 @@ Set-AzEesourceGroup -Tag @{} -Name plaz-app1-rg
 
 # Add a lock to a resource group:
 New-AzResourceLock -LockName prod1NoDelete -LockLevel CanNotDelete -ResourceGroupName plaz-prod1-rg
-Get-AzResourceLock –ResourceGroupName plaz-prod1-rg
-$lockid = (Get-AzureRmResourceLock –ResourceGroupName plaz-prod1-rg).LockId
+Get-AzResourceLock ï¿½ResourceGroupName plaz-prod1-rg
+$lockid = (Get-AzureRmResourceLock ï¿½ResourceGroupName plaz-prod1-rg).LockId
 Remove-AzResourceLock -LockId $lockid
 
 # Resource Access Control (IAM)
@@ -82,6 +82,53 @@ Remove-AzResourceGroup -Name plaz-net-rg
 
 
 # -------------------- Resource Groups -----------------------------
+
+####################################################################
+####### Tagging ##################################
+#Login-AzAccount
+
+(Get-AzResource -ResourceName "Ubuntu1" -ResourceGroupName "RG1").Tags
+
+(Get-AzResource -Tag @{Dept="IT"}).Name
+
+Get-AzResource -TagName Dept
+
+#Get a reference to an Azure resource
+$r = Get-AzResource -ResourceName Ubuntu1 -ResourceGroupName RG1
+
+#Retrieve existing resource tags, if any
+$tags = (Get-AzResource -Name Ubuntu1).Tags
+
+#Add new tags to exiting tags
+$tags += @{Dept="IT"; LifeCyclePhase="Testing"}
+
+#Write new tags to an Azure resource
+Set-AzResource -ResourceId $r.Id -Tag $tags -Force
+
+#Remove all tags
+Set-AzResource -Tag @{} -ResourceId $r.id -Force
+
+#List tags and their number of occurences
+Get-AzTag
+
+# -------------------- Tagging -----------------------
+
+
+################
+# Policies
+
+$rg = Get-AzResourceGroup -Name plaz-vm1-rg
+
+$policy_def = Get-AzPolicyDefinition | ` 
+Where-Object { $_.Properties.DisplayName -eq "Audit VMs that do not use managed disks" }
+
+New-AzPolicyAssignment -Name "Check for Managed Disks" -DisplayName "Check for Managed Disks" -Scope $rg.ResourceId -PolicyDefinition $policy_def
+
+# Invoicing
+$inv=Get-AzBillingInvoice -Latest
+Invoke-WebRequest -Uri $inv.DownloadUrl -OutFile ('c:\temp\' + $inv.Name + '.pdf')
+
+
 
 
 ####################################################################
