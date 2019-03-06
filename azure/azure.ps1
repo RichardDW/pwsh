@@ -35,7 +35,7 @@ Set-AzEesourceGroup -Tag @{} -Name plaz-app1-rg
 # Add a lock to a resource group:
 New-AzResourceLock -LockName prod1NoDelete -LockLevel CanNotDelete -ResourceGroupName plaz-prod1-rg
 Get-AzResourceLock �ResourceGroupName plaz-prod1-rg
-$lockid = (Get-AzureRmResourceLock �ResourceGroupName plaz-prod1-rg).LockId
+$lockid = (Get-AzResourceLock �ResourceGroupName plaz-prod1-rg).LockId
 Remove-AzResourceLock -LockId $lockid
 
 # Resource Access Control (IAM)
@@ -129,10 +129,10 @@ $inv=Get-AzBillingInvoice -Latest
 Invoke-WebRequest -Uri $inv.DownloadUrl -OutFile ('c:\temp\' + $inv.Name + '.pdf')
 
 # Create a custom role 
-# Login-AzureRmAccount
+# Login-AzAccount
 $mySub =  Get-AzSubscription
  
-$customrole = Get-AzureRmRoleDefinition "Virtual Machine Contributor"
+$customrole = Get-AzRoleDefinition "Virtual Machine Contributor"
 $customrole.Id = $null
 $customrole.Name = "Virtual Machine Starter"
 $customrole.Description = "Provides the ability to start a virtual machine."
@@ -147,7 +147,7 @@ $customrole.Actions.Add("Microsoft.Insights/alertRules/*")
 $customrole.AssignableScopes.Clear()
 $customrole.AssignableScopes.Add("/subscriptions/$mySub.Id")
  
-New-AzureRmRoleDefinition -Role $customrole 
+New-AzRoleDefinition -Role $customrole 
 
 # Providers
 

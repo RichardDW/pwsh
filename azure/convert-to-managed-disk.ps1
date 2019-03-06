@@ -2,6 +2,6 @@ $rgName = 'myResourceGroup'
 
 $vmName = 'myVM'
 
-Stop-AzureRmVM -ResourceGroupName $rgName -Name $vmName -Force
+Stop-AzVM -ResourceGroupName $rgName -Name $vmName -Force
 
-ConvertTo-AzureRmVMManagedDisk -ResourceGroupName $rgName -VMName $vmName
+ConvertTo-AzVMManagedDisk -ResourceGroupName $rgName -VMName $vmName

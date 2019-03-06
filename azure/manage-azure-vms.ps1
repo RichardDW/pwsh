@@ -1,22 +1,22 @@
 # Load up the Azure PowerShell modules
-Install-Module -Name AzureRM -Verbose -Force
+Install-Module -Name Az -Verbose -Force
 
 # Start VMs
-Start-AzureRmVm -Name '' -ResourceGroupName ''
+Start-AzVm -Name '' -ResourceGroupName ''
 
 # Stop VM
-Get-Azurermvm -ResourceGroupName '' | Stop-AzureRmVm -Force
+Get-Azvm -ResourceGroupName '' | Stop-AzVm -Force
 
 # Resize VM
 $resourceGroup = ''
 $vmName = ''
 
-Get-AzureRmVMSize -Location 'southcentralus' | Out-GridView
+Get-AzVMSize -Location 'southcentralus' | Out-GridView
 
-Get-AzureRmVMSize -ResourceGroupName $resourceGroup -VMName $vmName
+Get-AzVMSize -ResourceGroupName $resourceGroup -VMName $vmName
 
-$vm = Get-AzureRmVM -ResourceGroupName $resourceGroup -VMName $vmName
+$vm = Get-AzVM -ResourceGroupName $resourceGroup -VMName $vmName
 
 $vm.HardwareProfile.VmSize = ''
 
-Update-AzureRmVM -VM $vm -ResourceGroupName $resourceGroup
+Update-AzVM -VM $vm -ResourceGroupName $resourceGroup

@@ -4,20 +4,20 @@ $vmName = 'web1'
 $newAvailSetName = 'web'
 
 # Get VM Details
-$originalVM = Get-AzureRmVm `
+$originalVM = Get-AzVm `
     -ResourceGroupName $resourceGroup `
     -Name $vmName
 
 # Remove the original VM
-Remove-AzureRmVM -ResourceGroupName $resourceGroup -Name $vmName
+Remove-AzVM -ResourceGroupName $resourceGroup -Name $vmName
 
 # Create new availability set if it does not exist
-$availSet = Get-AzureRmAvailabilitySet `
+$availSet = Get-AzAvailabilitySet `
     -ResourceGroupName $resourceGroup `
     -Name $newAvailSetName `
     -ErrorAction Ignore
 if (-Not $availSet) {
-    $availSet = New-AzureRmAvailabilitySet `
+    $availSet = New-AzAvailabilitySet `
         -Location $originalVM.Location `
         -Name $newAvailSetName `
         -ResourceGroupName $resourceGroup `
@@ -27,12 +27,12 @@ if (-Not $availSet) {
 }
 
 # Create the basic configuration for the replacement VM
-$newVM = New-AzureRmVMConfig `
+$newVM = New-AzVMConfig `
     -VMName $originalVM.Name `
     -VMSize $originalVM.HardwareProfile.VmSize `
     -AvailabilitySetId $availSet.Id
 
-Set-AzureRmVMOSDisk `
+Set-AzVMOSDisk `
     -VM $newVM -CreateOption Attach `
     -ManagedDiskId $originalVM.StorageProfile.OsDisk.ManagedDisk.Id `
     -Name $originalVM.StorageProfile.OsDisk.Name `
@@ -40,7 +40,7 @@ Set-AzureRmVMOSDisk `
 
 # Add Data Disks
 foreach ($disk in $originalVM.StorageProfile.DataDisks) {
-    Add-AzureRmVMDataDisk -VM $newVM `
+    Add-AzVMDataDisk -VM $newVM `
         -Name $disk.Name `
         -ManagedDiskId $disk.ManagedDisk.Id `
         -Caching $disk.Caching `
@@ -51,13 +51,13 @@ foreach ($disk in $originalVM.StorageProfile.DataDisks) {
 
 # Add NIC(s)
 foreach ($nic in $originalVM.NetworkProfile.NetworkInterfaces) {
-    Add-AzureRmVMNetworkInterface `
+    Add-AzVMNetworkInterface `
         -VM $newVM `
         -Id $nic.Id
 }
 
 # Recreate the VM
-New-AzureRmVM `
+New-AzVM `
     -ResourceGroupName $resourceGroup `
     -Location $originalVM.Location `
     -VM $newVM `

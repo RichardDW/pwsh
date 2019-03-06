@@ -22,7 +22,7 @@ $mgmtAsg = New-AzApplicationSecurityGroup `
   -Name myAsgMgmtServers `
   -Location 'West Europe'
 
-  # Create two rules
+  # Create two rules - for NSG
   $webRule = New-AzNetworkSecurityRuleConfig `
   -Name "Allow-Web-All" `
   -Access Allow `

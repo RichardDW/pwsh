@@ -24,33 +24,33 @@ $virtualMachineName = 'web1'
 #Provide the size of the virtual machine
 #e.g. Standard_DS3
 #Get all the vm sizes in a region using below script:
-#e.g. Get-AzureRmVMSize -Location 'East US 2'
+#e.g. Get-AzVMSize -Location 'East US 2'
 $virtualMachineSize = 'Standard_D3_v2'
 
 #Set the context to the subscription Id where Managed Disk will be created
-Select-AzureRmSubscription -SubscriptionId $SubscriptionId
+Select-AzSubscription -SubscriptionId $SubscriptionId
 
-$snapshot = Get-AzureRmSnapshot -ResourceGroupName $resourceGroupName -SnapshotName $snapshotName
+$snapshot = Get-AzSnapshot -ResourceGroupName $resourceGroupName -SnapshotName $snapshotName
 
-$diskConfig = New-AzureRmDiskConfig -Location $snapshot.Location -SourceResourceId $snapshot.Id -CreateOption Copy
+$diskConfig = New-AzDiskConfig -Location $snapshot.Location -SourceResourceId $snapshot.Id -CreateOption Copy
 
-$disk = New-AzureRmDisk -Disk $diskConfig -ResourceGroupName 'restore' -DiskName $osDiskName
+$disk = New-AzDisk -Disk $diskConfig -ResourceGroupName 'restore' -DiskName $osDiskName
 
 #Initialize virtual machine configuration
-$VirtualMachine = New-AzureRmVMConfig -VMName $virtualMachineName -VMSize $virtualMachineSize
+$VirtualMachine = New-AzVMConfig -VMName $virtualMachineName -VMSize $virtualMachineSize
 
 #Use the Managed Disk Resource Id to attach it to the virtual machine. Please change the OS type to linux if OS disk has linux OS
-$VirtualMachine = Set-AzureRmVMOSDisk -VM $VirtualMachine -ManagedDiskId $disk.Id -CreateOption Attach -Windows
+$VirtualMachine = Set-AzVMOSDisk -VM $VirtualMachine -ManagedDiskId $disk.Id -CreateOption Attach -Windows
 
 #Create a public IP for the VM
-$publicIp = New-AzureRmPublicIpAddress -Name ($VirtualMachineName.ToLower() + '_ip') -ResourceGroupName $resourceGroupName -Location $snapshot.Location -AllocationMethod Dynamic
+$publicIp = New-AzPublicIpAddress -Name ($VirtualMachineName.ToLower() + '_ip') -ResourceGroupName $resourceGroupName -Location $snapshot.Location -AllocationMethod Dynamic
 
 #Get the virtual network where virtual machine will be hosted
-$vnet = Get-AzureRmVirtualNetwork -Name 'hybrid-vnet' -ResourceGroupName 'hybrid-rg'
+$vnet = Get-AzVirtualNetwork -Name 'hybrid-vnet' -ResourceGroupName 'hybrid-rg'
 
 # Create NIC in the first subnet of the virtual network
-$nic = New-AzureRmNetworkInterface -Name ($VirtualMachineName.ToLower() + '_nic') -ResourceGroupName $resourceGroupName -Location $snapshot.Location -SubnetId $vnet.Subnets[0].Id -PublicIpAddressId $publicIp.Id
+$nic = New-AzNetworkInterface -Name ($VirtualMachineName.ToLower() + '_nic') -ResourceGroupName $resourceGroupName -Location $snapshot.Location -SubnetId $vnet.Subnets[0].Id -PublicIpAddressId $publicIp.Id
 
-$VirtualMachine = Add-AzureRmVMNetworkInterface -VM $VirtualMachine -Id $nic.Id
+$VirtualMachine = Add-AzVMNetworkInterface -VM $VirtualMachine -Id $nic.Id
 
-New-AzureRmVM -VM $VirtualMachine -ResourceGroupName 'restore' -Location $snapshot.Location
+New-AzVM -VM $VirtualMachine -ResourceGroupName 'restore' -Location $snapshot.Location

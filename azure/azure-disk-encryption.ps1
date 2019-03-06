@@ -1,11 +1,11 @@
 ﻿$rgName = "pluralsight"
 $location = "South Central US"
 
-Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.KeyVault"
-New-AzureRmResourceGroup -Location $location -Name $rgName
+Register-AzResourceProvider -ProviderNamespace "Microsoft.KeyVault"
+New-AzResourceGroup -Location $location -Name $rgName
 
 $keyVaultName = "psKeyVault7837"
-New-AzureRmKeyVault -Location $location `
+New-AzKeyVault -Location $location `
     -ResourceGroupName $rgName `
     -VaultName $keyVaultName `
     -EnabledForDiskEncryption
@@ -22,23 +22,23 @@ $securePassword = ConvertTo-SecureString -String "114rrwesNY" -AsPlainText -Forc
 
 
 
-$app = New-AzureRmADApplication -DisplayName $appName `
+$app = New-AzADApplication -DisplayName $appName `
     -HomePage "https://ade.ps.local" `
     -IdentifierUris "https://ade.ps/ade" `
     -Password $securePassword
-New-AzureRmADServicePrincipal -ApplicationId $app.ApplicationId
+New-AzADServicePrincipal -ApplicationId $app.ApplicationId
 
-Set-AzureRmKeyVaultAccessPolicy -VaultName $keyvaultName `
+Set-AzKeyVaultAccessPolicy -VaultName $keyvaultName `
     -ServicePrincipalName $app.ApplicationId `
     -PermissionsToKeys "WrapKey" `
     -PermissionsToSecrets "Set"
 
-$keyVault = Get-AzureRmKeyVault -VaultName $keyVaultName -ResourceGroupName $rgName;
+$keyVault = Get-AzKeyVault -VaultName $keyVaultName -ResourceGroupName $rgName;
 $diskEncryptionKeyVaultUrl = $keyVault.VaultUri;
 $keyVaultResourceId = $keyVault.ResourceId;
 $keyEncryptionKeyUrl = (Get-AzureKeyVaultKey -VaultName $keyVaultName -Name ADEKEY).Key.kid
 
-Set-AzureRmVMDiskEncryptionExtension -ResourceGroupName $rgName `
+Set-AzVMDiskEncryptionExtension -ResourceGroupName $rgName `
     -VMName "managedserver" `
     -AadClientID $app.ApplicationId `
     -AadClientSecret (New-Object PSCredential "tim@timw.info", $securePassword).GetNetworkCredential().Password `
@@ -48,4 +48,4 @@ Set-AzureRmVMDiskEncryptionExtension -ResourceGroupName $rgName `
     -KeyEncryptionKeyVaultId $keyVaultResourceId
 
 
-Get-AzureRmVmDiskEncryptionStatus  -ResourceGroupName $rgName -VMName "managedserver"
+Get-AzVmDiskEncryptionStatus  -ResourceGroupName $rgName -VMName "managedserver"

@@ -14,24 +14,24 @@ $vnet1Name = 'vnet1'
 
 $vnet2Name = 'vnet2'
 
-$vnet1 = Get-AzureRmVirtualNetwork -Name $vnet1Name -ResourceGroupName $rgName
-$vnet2 = Get-AzureRmVirtualNetwork -Name $vnet2Name -ResourceGroupName $rgName
+$vnet1 = Get-AzVirtualNetwork -Name $vnet1Name -ResourceGroupName $rgName
+$vnet2 = Get-AzVirtualNetwork -Name $vnet2Name -ResourceGroupName $rgName
 
-New-AzureRmDnsZone -Name $zoneName -ResourceGroupName $rgName `
+New-AzDnsZone -Name $zoneName -ResourceGroupName $rgName `
    -ZoneType Private -RegistrationVirtualNetworkId @($vnet1.Id)
 
-New-AzureRmDnsRecordSet -Name $host1Name -RecordType A -ZoneName $zoneName `
+New-AzDnsRecordSet -Name $host1Name -RecordType A -ZoneName $zoneName `
  -ResourceGroupName $rgName -Ttl 3600 `
- -DnsRecords (New-AzureRmDnsRecordConfig -IPv4Address $host1IP)
+ -DnsRecords (New-AzDnsRecordConfig -IPv4Address $host1IP)
 
-New-AzureRmDnsRecordSet -Name $host2Name -RecordType A `
+New-AzDnsRecordSet -Name $host2Name -RecordType A `
  -ZoneName $zoneName -ResourceGroupName $rgName `
- -Ttl 3600 -DnsRecords (New-AzureRmDnsRecordConfig -IPv4Address $host2IP)
+ -Ttl 3600 -DnsRecords (New-AzDnsRecordConfig -IPv4Address $host2IP)
 
-Get-AzureRmDnsRecordSet -ZoneName $zoneName -ResourceGroupName $rgName
+Get-AzDnsRecordSet -ZoneName $zoneName -ResourceGroupName $rgName
 
-Set-AzureRmDnsZone -Name $zoneName -ResourceGroupName $rgName `
+Set-AzDnsZone -Name $zoneName -ResourceGroupName $rgName `
  -RegistrationVirtualNetworkId @($vnet1.Id)
 
-Set-AzureRmDnsZone -Name $zoneName -ResourceGroupName $rgName `
+Set-AzDnsZone -Name $zoneName -ResourceGroupName $rgName `
  -ResolutionVirtualNetworkId @($vnet2.Id)
