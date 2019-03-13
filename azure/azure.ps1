@@ -6,6 +6,11 @@ if (1 -eq 1) { exit }
 
 Add-AzAccount
 
+Get-CloudDrive
+
+Get-Command -Verb get -Noun Az*network*
+
+
 ###############################################################
 ####### Resource Groups ########################
 
@@ -119,7 +124,7 @@ Get-AzTag
 
 $rg = Get-AzResourceGroup -Name plaz-vm1-rg
 
-$policy_def = Get-AzPolicyDefinition | ` 
+$policy_def = Get-AzPolicyDefinition | `
 Where-Object { $_.Properties.DisplayName -eq "Audit VMs that do not use managed disks" }
 
 New-AzPolicyAssignment -Name "Check for Managed Disks" -DisplayName "Check for Managed Disks" -Scope $rg.ResourceId -PolicyDefinition $policy_def
