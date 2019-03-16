@@ -60,7 +60,7 @@ New-AzRoleAssignment -ObjectId $groupid -RoleDefinitionName "Owner" -ResourceGro
 # Policies on Resource groups
 
 Register-AzResourceProvider -ProviderNamespace 'Microsoft.PolicyInsights'
-Get-AzPolicyDefinition|gm
+Get-AzPolicyDefinition|Get-Member
 $rg = Get-AzResourceGroup -Name '<resourceGroupName>'
 $definition = Get-AzPolicyDefinition | Where-Object { $_.Properties.DisplayName -eq 'Audit VMs that do not use managed disks' }
 New-AzPolicyAssignment -Name 'audit-vm-manageddisks' -DisplayName 'Audit VMs without managed disks Assignment' -Scope $rg.ResourceId -PolicyDefinition $definition
@@ -168,7 +168,20 @@ Register-AzResourceProvider -ProviderNamespace 'Microsoft.BotService'
 Get-AzResourceProvider –ListAvailable | `
 Where-Object{$_.ProviderNamespace -eq "Microsoft.BotService"} 
 
+################### VM's ##########################################
+#############
+# restore a managed disk from a snapshot
+$vm = Get-AzVM -ResourceGroupName plural-rg -Name winhost1
+$disk = Get-AzDisk -ResourceGroupName plural-rg -DiskName <snapshotname>
+Set-AzVMOSDisk -VM $vm -ManagedDiskId $disk.Id -Name $disk.Name
+Update-AzVM -ResourceGroupName plural-rg -VM $vm
 
+
+
+
+
+#######
+# --------------------- VM's -----------------------------------
 
 ####################################################################
 #Gets users from Azure Active Directory.
