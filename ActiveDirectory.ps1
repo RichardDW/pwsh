@@ -105,20 +105,6 @@ workflow Test-WFConnection {
 }
 
 
-# Measure the workflow execution time
-Measure-Command -Expression { Test-WFConnection -Computers $computers }
-
-
-
-
-$s =  Get-ADComputer -Filter 'Name -like "OPER*"' | Select -Property Name 
-foreach ($item in $s)
-{
-Write-Host $item
-Write-Host "-----------"
-    
-}
-
 # Protect AD user objects from accidental deletion
 Get-ADObject -filter {(ObjectClass -eq "user")} | Set-ADObject -ProtectedFromAccidentalDeletion:$true
 # Protect OU's from accidental deletion
@@ -353,5 +339,40 @@ Invoke-Command –Computername $clientvm –ScriptBlock {Set-ItemProperty -Path 
 
 
 
+function Get-NestedGroupMember 
+
+  {
+
+  [CmdletBinding()] 
+
+  param 
+
+  (
+
+  [Parameter(Mandatory)] 
+
+  [string]$Group 
+
+  )
+
+  
+
+## Find all members  in the group specified 
+$members = Get-ADGroupMember -Identity $Group 
+foreach ($member in $members)
+{
+ ## If any member in  that group is another group just call this function again 
+    if ($member.objectClass -eq 'group')
+        {
+            Get-NestedGroupMember -Group $member.Name
+        }
+    else ## otherwise, just  output the non-group object (probably a user account) 
+        {
+            $member.Name  
+        }
+}
+
+
+
     
-    } # End DummyUse
+ } # End DummyUse
