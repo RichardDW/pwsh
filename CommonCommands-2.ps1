@@ -110,7 +110,7 @@ $servers | foreach {
       Verified = $Verified
   }
  }
-}
+} 
 
 # Running Get-Service over a single remoting port and in parallel
 Invoke-Command -scriptblock {
@@ -138,7 +138,6 @@ $space = Get-ChildItem "$env:temp" -Recurse -Force |
   Select-Object -ExpandProperty Sum
  
 'Taken space: {0:n1} MB' -f ($space/1MB) 
-
 ##### look at temp files older than 3 months 
 
 
