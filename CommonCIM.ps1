@@ -156,6 +156,8 @@ Get-CimClass Win32* -QualifierName Association
 
 Get-CimClass -Namespace root/Microsoft/Windows/smb -class *Smb* -QualifierName Indication
 
+Get-CimInstance -Class Win32_BIOS | Select-Object -Property *
+
 # Get-CimInstance was designed to be similar to the Get-WmiObject
 
 # WMI Cmdlet : Get-WmiObject -class Win32_Process
