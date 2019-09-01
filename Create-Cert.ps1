@@ -151,4 +151,12 @@ Import-PfxCertificate -FilePath $myPfx -CertStoreLocation "cert:\LocalMachine\Tr
 # Sign more scripts
  get-childitem *ps1 | Set-AuthenticodeSignature -Certificate $MyCertFromPfx
 
+ # Find cert by thumbprint
+ Get-ChildItem Cert:\LocalMachine\TrustedPublisher\ | Where-object { $_.thumbprint -eq "06B2B0DF262023EDD14A0555C25B3C7F753236D2"}
+ # Add a timestamp
+ Set-AuthenticodeSignature .\ToBeSigned.ps1 -certificate $MyCertFromPfx -IncludeChain "All" -TimestampServer "http://timestamp.verisign.com/scripts/timstamp.dll"
 
+# Check details of signature
+Get-AuthenticodeSignature ToBeSigned.ps1 | select-object *
+
+# https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_signing?view=powershell-6
