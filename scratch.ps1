@@ -26,3 +26,15 @@ $WeekReportPath = $WeekReportPath | Split-Path -Parent
 foreach ($line in $SortnCountedHash) {
     Write-Output ("$line.count" + ";" + "$line.Name")
 }
+
+
+
+$fullCSV = Import-CSV -Path 'd:\temp\report.csv' -Delimiter ';' | Sort-Object -Property filehash
+$grouped = $fullCSV | Group-Object {$_.filehash} 
+$grouped | gm
+
+$grouped | Select-Object {$_.Count}, {$_.Name} | Export-CSV -Path D:\temp\count.csv -Delimiter ';'
+
+$uniqueSites = $fullCSV.Sitename | Sort-Object | Get-Unique
+
+$WeekReportPath = $WeekReportPath | Split-Path -Parent
