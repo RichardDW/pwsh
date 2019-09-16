@@ -218,7 +218,7 @@ cd wsman
 
 # Hardware
 
-get-wmiobject Win32_PhysicalMemory -ComputerName mydc-01 |
+get-wmiobject Win32_PhysicalMemory -ComputerName localhost |
 select @{Label="Device Location";Expression={$_.DeviceLocator}},`
 DataWidth, @{Label="Capacity";Expression={"{0,12:n0} MB" -f ($_.Capacity/1mb)}}, PartNumber, SerialNumber, Speed
 
@@ -233,7 +233,7 @@ Format-Table -AutoSize
 
 # Type of computer can be determined by the WMI class SystemEnclosure by getting the ChassisType
 Get-WmiObject Win32_systemEnclosure -ErrorAction SilentlyContinue -computerName (get-Content c:\temp\pclist.txt) | 
-foreach {Write-Host "$i Chassistype is:" $_.Chassistypes}
+ForEach-Object {Write-Host "$i Chassistype is:" $_.Chassistypes}
 
 get-wmiobject -Class win32_computersystem -computername localhost | fl *
 Get-WmiObject -class win32_logicaldisk -ComputerName PC-506

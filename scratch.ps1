@@ -26,3 +26,6 @@ $WeekReportPath = $WeekReportPath | Split-Path -Parent
 foreach ($line in $SortnCountedHash) {
     Write-Output ("$line.count" + ";" + "$line.Name")
 }
+
+
+Get-Process -Name
