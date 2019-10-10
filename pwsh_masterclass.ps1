@@ -25,7 +25,8 @@ Get-Process | Out-GridView -PassThru | Stop-Process
 Get-Process |Export-Clixml D:\tmp\procs.xml
 
 
-ipconfig | Select-String -pattern 192
+ipconfig | Select-String -pattern 192.168.2.10
+
 
 
 
