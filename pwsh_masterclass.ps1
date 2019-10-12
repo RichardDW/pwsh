@@ -2,8 +2,8 @@ notepad.exe
 
 
 
-Get-Process | Where-Object {$_.Name -eq "notepad"}
-Get-Process | Where-Object {$_.Name -eq "notepad"} | Stop-Process
+Get-Process |  Where-Object {$_.Name -eq "notepad"}
+Get-Process |  Where-Object {$_.Name -eq "notepad"} | Stop-Process
 (Get-Process | Where-Object {$_.Name -eq "notepad"}).Kill()
 (Get-Process | Where-Object {$_.Name -eq "notepad"})
 (Get-Process | Where-Object {$_.Name -eq "notepad"})
