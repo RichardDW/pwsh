@@ -26,9 +26,9 @@ Get-Process |Export-Clixml D:\tmp\procs.xml
 
 Get-Process -Name RzSynapse
 
-<<<<<<< HEAD
 ipconfig | Select-String -pattern 192
 
+# Variables
 $name = "hello"
 $name.GetType()
 [char]$mychar = 'a'
@@ -36,8 +36,37 @@ $number = [int]42
 
 
 
+# date and time
 
+# Define first and last days of last week
+$s = get-date -hour 0 -minute 0 -second 0
+$weekStartDate = $s.AddDays(-6-($s).DayOfWeek.value__)
 
-=======
-ipconfig | Select-String -pattern 192.168.2.10
->>>>>>> d472b9539dd995b193002274b62e63e05b5318bb
+$e = get-date -hour 23 -minute 59 -second 59
+$weekEndDate = $e.AddDays(-($e).DayOfWeek.value__)
+#
+
+# CUSTOM DATE DEFINITIONS
+## Define first and last day of the week
+#$weekStartDate = (get-date "08-28-2019")
+#$weekEndDate = (get-date "08-29-2019")
+#
+
+## Define yesterday and lastweek variables
+$Yesterday   = (Get-Date).AddDays(-1)
+$lastWeek    = (Get-Date).AddDays(-7)
+
+## Get last weeks weeknumber & yearnumber
+$weekNumber =  ([System.Globalization.DateTimeFormatInfo]::CurrentInfo.Calendar.GetWeekOfYear([datetime]::Now,0,0) - 1)
+#([System.Globalization.DateTimeFormatInfo]::CurrentInfo.Calendar.GetWeekOfYear([datetime]::Now,0,0) - 1)
+$yearNumber = (get-date).year
+
+$today = Get-Date
+$today | Select-Object -ExpandProperty DayOfWeek
+
+[datetime]::ParseExact("10-26-2019","MM-dd-yyyy",[System.Globalization.CultureInfo]::InvariantCulture)
+$christmas = [System.DateTime]"25 december 2019"
+($christmas - $today).Days
+$today.AddDays(-60)
+$mya = New-Object System.Globalization.DateTimeFormatInfo
+$mya.DayNames
