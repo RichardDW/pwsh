@@ -24,5 +24,20 @@ Get-Process | Out-GridView -PassThru | Stop-Process
 
 Get-Process |Export-Clixml D:\tmp\procs.xml
 
+Get-Process -Name RzSynapse
 
+<<<<<<< HEAD
+ipconfig | Select-String -pattern 192
+
+$name = "hello"
+$name.GetType()
+[char]$mychar = 'a'
+$number = [int]42
+
+
+
+
+
+=======
 ipconfig | Select-String -pattern 192.168.2.10
+>>>>>>> d472b9539dd995b193002274b62e63e05b5318bb
