@@ -1,6 +1,6 @@
+if (1 -eq 1) { exit }
+
 notepad.exe
-
-
 
 Get-Process |  Where-Object {$_.Name -eq "notepad"}
 Get-Process |  Where-Object {$_.Name -eq "notepad"} | Stop-Process
