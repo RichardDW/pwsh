@@ -70,3 +70,114 @@ $christmas = [System.DateTime]"25 december 2019"
 $today.AddDays(-60)
 $mya = New-Object System.Globalization.DateTimeFormatInfo
 $mya.DayNames
+
+
+# Custom objects
+
+dir c:\temp -file |
+Select-Object Name, LastWriteTime,
+@{Name="Size";
+Expression={$_.Length}},
+@{Name="Age"; Expression={(Get-Date) - $_.lastwritetime}} |
+Sort Age -Descending |
+Select-Object -First 10
+
+$f = dir c:\work -File
+$n = Get-Date
+foreach ($file in $f ) {
+  $h=@{
+    Name     = $file.Name
+    Modified = $file.LastWriteTime
+    Size     = Sfile.Length
+    Age = $n - $file.LastWriteTime
+  }
+  New-Object psobject -Property $h
+}
+
+dir c:\work -file |
+ForEach-Object {
+  [PSCustomObject]@{
+    Name = $_.Name
+    Size = $_.Length
+    Modified = $_.LastWriteTime
+    Age = (Get-Date)-$_.LastWriteTime
+  }
+}
+
+
+
+## Try Catch
+
+$servname = "bits"
+
+Try {
+  Get-Service -Name $servname -ErrorAction Stop
+}
+
+Catch {
+  Write-Warning "Failed to get service from $computername.$($_.Exception.Message)"
+}
+
+
+
+Get-Process | Where-Object StartTime |
+Select-Object Name, Id, @{Name='Run';Expression={(Get-Date) - $_.StartTime}} |
+Sort-Object Run -Descending | Select-Object -First 5
+
+Get-Process | Where-Object StartTime | foreach {
+  [PSCustomObject]@{
+    Name=$_.Name
+    ID=$_.Id
+    Run=((Get-Date) - $_.StartTime)
+  }
+} | Sort-Object Run -Descending |Select-Object -First 10
+
+
+
+#region disk history
+#params
+Param(
+  [string[]]$Computername = $env:COMPUTERNAME
+)
+
+$Computername = "localhost","MARS"
+
+# Path to csv file
+$CSV = "d:\data\diskhist.csv"
+
+# initialize an empty array
+$data = @()
+
+# define a hashtable of paramaters to splat to CIM
+$cimParams = @{
+  Classname   = "Win32_LogicalDisk"
+  Filter      = "drivetype = 3"
+  ErrorAction = "Stop"
+}
+
+Write-Host "Getting disk information for following computers: $Computername" -ForegroundColor Cyan
+foreach ($computer in $Computername) {
+  Write-Host "Getting disk information from $computer." -ForegroundColor Cyan
+  # update the hashtable on the fly
+  $cimParams.Computername = $computer
+  Try {
+    $disks = Get-CimInstance @cimParams
+
+    $data += $disks |
+      Select-Object @{Name = "Computername"; Expression = {$_.SystemName}},
+    DeviceID, Size, Freespace,
+    @{Name = "PctFree"; Expression = { ($_.Freespace / $_.Size) * 100} },
+    @{Name = "Date"; Expression = {Get-Date}}
+
+  } # try
+  Catch {
+    Write-Warning "Failed to get disk data from $($computer.toUpper()). $($_.Exception.message)"
+  } #catch
+} #foreach
+
+#only export if there is something in $data
+if ($data) {
+  $data | Export-Csv -Path $csv -Append -NoTypeInformation
+}
+
+#endregion disk history
