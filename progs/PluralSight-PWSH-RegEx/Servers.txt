@@ -1,0 +1,13 @@
+chi-dc04
+chi-fp02
+chi-hvr2
+chi-web02
+chi-scom01
+chi-sql01
+chi-core01
+chi-core02
+chi-p50
+chi-pull
+chi-win10
+chi-win81
+chi-wsus

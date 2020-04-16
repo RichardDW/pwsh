@@ -1,0 +1,841 @@
+﻿
+**********************
+Windows PowerShell transcript start
+Start time: 20190919025126
+Username: THINKP1\Jeff
+RunAs User: THINKP1\Jeff
+Configuration Name: 
+Machine: THINKP1 (Microsoft Windows NT 10.0.18362.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 13116
+PSVersion: 5.1.18362.145
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.18362.145
+BuildVersion: 10.0.18362.145
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is c:\work\trans-2.txt
+PS C:\work> get-service xbl*
+
+Status   Name               DisplayName
+------   ----               -----------
+Stopped  XblAuthManager     Xbox Live Auth Manager
+Stopped  XblGameSave        Xbox Live Game Save
+
+
+PS C:\work> get-service xb*
+
+Status   Name               DisplayName
+------   ----               -----------
+Stopped  XblAuthManager     Xbox Live Auth Manager
+Stopped  XblGameSave        Xbox Live Game Save
+Stopped  XboxGipSvc         Xbox Accessory Management Service
+Stopped  XboxNetApiSvc      Xbox Live Networking Service
+
+
+PS C:\work> get-service xb* | select name,start*
+
+Name           StartType
+----           ---------
+XblAuthManager    Manual
+XblGameSave       Manual
+XboxGipSvc        Manual
+XboxNetApiSvc     Manual
+
+
+PS C:\work> get-service xb* | set-service -StartupType Disabled -PassThru | select name,starttype
+
+Name           StartType
+----           ---------
+XblAuthManager  Disabled
+XblGameSave     Disabled
+XboxGipSvc      Disabled
+XboxNetApiSvc   Disabled
+
+
+PS C:\work> ps x*
+PS C:\work> test-wsman
+
+
+wsmid           : http://schemas.dmtf.org/wbem/wsman/identity/1/wsmanidentity.xsd
+ProtocolVersion : http://schemas.dmtf.org/wbem/wsman/1/wsman.xsd
+ProductVendor   : Microsoft Corporation
+ProductVersion  : OS: 0.0.0 SP: 0.0 Stack: 3.0
+
+
+
+PS C:\work> get-command -verb set
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Alias           Set-AdlAnalyticsAccount                            1.0.0      Az.DataLakeAnalytics
+Alias           Set-AdlAnalyticsDataSource                         1.0.0      Az.DataLakeAnalytics
+Alias           Set-AdlAnalyticsFirewallRule                       1.0.0      Az.DataLakeAnalytics
+Alias           Set-AdlCatalogCredential                           1.0.0      Az.DataLakeAnalytics
+Alias           Set-AdlCatalogItemAclEntry                         1.0.0      Az.DataLakeAnalytics
+Alias           Set-AdlCatalogSecret                               1.0.0      Az.DataLakeAnalytics
+Alias           Set-AdlStore                                       1.2.0      Az.DataLakeStore
+Alias           Set-AdlStoreFirewallRule                           1.2.0      Az.DataLakeStore
+Alias           Set-AdlStoreItemAcl                                1.2.0      Az.DataLakeStore
+Alias           Set-AdlStoreItemAclEntry                           1.2.0      Az.DataLakeStore
+Alias           Set-AdlStoreItemExpiry                             1.2.0      Az.DataLakeStore
+Alias           Set-AdlStoreItemOwner                              1.2.0      Az.DataLakeStore
+Alias           Set-AdlStoreItemPermission                         1.2.0      Az.DataLakeStore
+Alias           Set-AdlStoreTrustedIdProvider                      1.2.0      Az.DataLakeStore
+Alias           Set-AdlStoreVirtualNetworkRule                     1.2.0      Az.DataLakeStore
+Alias           Set-AppPackageDefaultVolume                        2.0.1.0    Appx
+Alias           Set-AppPackageProvisionedDataFile                  3.0        Dism
+Alias           Set-ASRAlertSetting                                1.3.0      Az.RecoveryServices
+Alias           Set-ASRNotificationSetting                         1.3.0      Az.RecoveryServices
+Alias           Set-ASRReplicationProtectedItem                    1.3.0      Az.RecoveryServices
+Alias           Set-ASRVaultContext                                1.3.0      Az.RecoveryServices
+Alias           Set-ASRVaultSettings                               1.3.0      Az.RecoveryServices
+Alias           Set-AutologgerConfig                               1.0.0.0    EventTracingManagement
+Alias           Set-AzADApplication                                1.3.1      Az.Resources
+Alias           Set-AzADServicePrincipal                           1.3.1      Az.Resources
+Alias           Set-AzADUser                                       1.3.1      Az.Resources
+Alias           Set-AzApplicationGatewayBackendHttpSettings        1.7.0      Az.Network
+Alias           Set-AzAs                                           1.1.0      Az.AnalysisServices
+Alias           Set-AzIotHubVC                                     1.1.0      Az.IotHub
+Alias           Set-AzKeyVaultCertificateAttribute                 1.2.0      Az.KeyVault
+Alias           Set-AzKeyVaultKey                                  1.2.0      Az.KeyVault
+Alias           Set-AzKeyVaultKeyAttribute                         1.2.0      Az.KeyVault
+Alias           Set-AzKeyVaultSecretAttribute                      1.2.0      Az.KeyVault
+Alias           Set-AzNotificationHubAuthorizationRules            1.1.0      Az.NotificationHubs
+Alias           Set-AzNotificationHubsNamespaceAuthorizationRules  1.1.0      Az.NotificationHubs
+Alias           Set-AzRecoveryServicesAsrNotificationSetting       1.3.0      Az.RecoveryServices
+Alias           Set-AzRecoveryServicesAsrVaultSettings             1.3.0      Az.RecoveryServices
+Alias           Set-AzRecoveryServicesBackupProperties             1.3.0      Az.RecoveryServices
+Alias           Set-AzRedisCacheDiagnostics                        1.1.0      Az.RedisCache
+Alias           Set-AzSqlDatabaseLongTermRetentionPolicy           1.9.0      Az.Sql
+Alias           Set-AzSqlDatabaseServerAuditingPolicy              1.9.0      Az.Sql
+Alias           Set-AzVMBootDiagnostics                            1.8.0      Az.Compute
+Alias           Set-EtwTraceSession                                1.0.0.0    EventTracingManagement
+Alias           Set-MyTaskPath                                     2.3.0      MyTasks
+Alias           Set-ProvisionedAppPackageDataFile                  3.0        Dism
+Alias           Set-ProvisionedAppXDataFile                        3.0        Dism
+Alias           Set-PSTypeExtension                                1.4.0      PSTypeExtensionTools
+Function        Set-Advertisement                                  1.0        odatademo
+Function        Set-AssignedAccess                                 1.0.0.0    AssignedAccess
+Function        Set-BCAuthentication                               1.0.0.0    BranchCache
+Function        Set-BCCache                                        1.0.0.0    BranchCache
+Function        Set-BCDataCacheEntryMaxAge                         1.0.0.0    BranchCache
+Function        Set-BCMinSMBLatency                                1.0.0.0    BranchCache
+Function        Set-BCSecretKey                                    1.0.0.0    BranchCache
+Function        Set-Category                                       1.0        odatademo
+Function        Set-ClusteredScheduledTask                         1.0.0.0    ScheduledTasks
+Function        Set-ConsoleColor                                   2.11.0     PSScriptTools
+Function        Set-ConsoleTitle                                   2.11.0     PSScriptTools
+Function        Set-DAClientExperienceConfiguration                1.0.0.0    DirectAccessClientComponents
+Function        Set-DAEntryPointTableItem                          1.0.0.0    DirectAccessClientComponents
+Function        Set-Disk                                           2.0.0.0    Storage
+Function        Set-DnsClient                                      1.0.0.0    DnsClient
+Function        Set-DnsClientGlobalSetting                         1.0.0.0    DnsClient
+Function        Set-DnsClientNrptGlobal                            1.0.0.0    DnsClient
+Function        Set-DnsClientNrptRule                              1.0.0.0    DnsClient
+Function        Set-DnsClientServerAddress                         1.0.0.0    DnsClient
+Function        Set-DtcAdvancedHostSetting                         1.0.0.0    MsDtc
+Function        Set-DtcAdvancedSetting                             1.0.0.0    MsDtc
+Function        Set-DtcClusterDefault                              1.0.0.0    MsDtc
+Function        Set-DtcClusterTMMapping                            1.0.0.0    MsDtc
+Function        Set-DtcDefault                                     1.0.0.0    MsDtc
+Function        Set-DtcLog                                         1.0.0.0    MsDtc
+Function        Set-DtcNetworkSetting                              1.0.0.0    MsDtc
+Function        Set-DtcTransaction                                 1.0.0.0    MsDtc
+Function        Set-DtcTransactionsTraceSession                    1.0.0.0    MsDtc
+Function        Set-DtcTransactionsTraceSetting                    1.0.0.0    MsDtc
+Function        Set-DynamicParameterVariable                       4.8.1      Pester
+Function        Set-DynamicParameterVariable                       4.7.2      Pester
+Function        Set-DynamicParameterVariable                       4.6.0      Pester
+Function        Set-DynamicParameterVariable                       4.5.0      Pester
+Function        Set-DynamicParameterVariables                      3.4.0      Pester
+Function        Set-EtwTraceProvider                               1.0.0.0    EventTracingManagement
+Function        Set-FileIntegrity                                  2.0.0.0    Storage
+Function        Set-FileShare                                      2.0.0.0    Storage
+Function        Set-FileStorageTier                                2.0.0.0    Storage
+Function        Set-FunctionDescription
+Function        Set-HgsClientConfiguration                         1.0.0.0    HgsClient
+Function        Set-HgsClientHostKey                               1.0.0.0    HgsClient
+Function        Set-InitiatorPort                                  2.0.0.0    Storage
+Function        Set-IscsiChapSecret                                1.0.0.0    iSCSI
+Function        Set-ItResult                                       4.8.1      Pester
+Function        Set-ItResult                                       4.7.2      Pester
+Function        Set-ItResult                                       4.6.0      Pester
+Function        Set-ItResult                                       4.5.0      Pester
+Function        Set-LabHostDefault                                 0.18.0     Lability
+Function        Set-LabVMDefault                                   0.18.0     Lability
+Function        Set-LogProperties                                  1.0.0.0    PSDiagnostics
+Function        Set-MMAgent                                        1.0        MMAgent
+Function        Set-MpPreference                                   1.0        Defender
+Function        Set-MyTask                                         2.3.0      MyTasks
+Function        Set-MyTaskHome                                     2.3.0      MyTasks
+Function        Set-MyTimer                                        0.9.0      PSTimers
+Function        Set-NCSIPolicyConfiguration                        1.0.0.0    NetworkConnectivityStatus
+Function        Set-Net6to4Configuration                           1.0.0.0    NetworkTransition
+Function        Set-NetAdapter                                     2.0.0.0    NetAdapter
+Function        Set-NetAdapterAdvancedProperty                     2.0.0.0    NetAdapter
+Function        Set-NetAdapterBinding                              2.0.0.0    NetAdapter
+Function        Set-NetAdapterChecksumOffload                      2.0.0.0    NetAdapter
+Function        Set-NetAdapterEncapsulatedPacketTaskOffload        2.0.0.0    NetAdapter
+Function        Set-NetAdapterIPsecOffload                         2.0.0.0    NetAdapter
+Function        Set-NetAdapterLso                                  2.0.0.0    NetAdapter
+Function        Set-NetAdapterPacketDirect                         2.0.0.0    NetAdapter
+Function        Set-NetAdapterPowerManagement                      2.0.0.0    NetAdapter
+Function        Set-NetAdapterQos                                  2.0.0.0    NetAdapter
+Function        Set-NetAdapterRdma                                 2.0.0.0    NetAdapter
+Function        Set-NetAdapterRsc                                  2.0.0.0    NetAdapter
+Function        Set-NetAdapterRss                                  2.0.0.0    NetAdapter
+Function        Set-NetAdapterSriov                                2.0.0.0    NetAdapter
+Function        Set-NetAdapterUso                                  2.0.0.0    NetAdapter
+Function        Set-NetAdapterVmq                                  2.0.0.0    NetAdapter
+Function        Set-NetConnectionProfile                           1.0.0.0    NetConnection
+Function        Set-NetDnsTransitionConfiguration                  1.0.0.0    NetworkTransition
+Function        Set-NetEventPacketCaptureProvider                  1.0.0.0    NetEventPacketCapture
+Function        Set-NetEventProvider                               1.0.0.0    NetEventPacketCapture
+Function        Set-NetEventSession                                1.0.0.0    NetEventPacketCapture
+Function        Set-NetEventVFPProvider                            1.0.0.0    NetEventPacketCapture
+Function        Set-NetEventVmSwitchProvider                       1.0.0.0    NetEventPacketCapture
+Function        Set-NetEventWFPCaptureProvider                     1.0.0.0    NetEventPacketCapture
+Function        Set-NetFirewallAddressFilter                       2.0.0.0    NetSecurity
+Function        Set-NetFirewallApplicationFilter                   2.0.0.0    NetSecurity
+Function        Set-NetFirewallInterfaceFilter                     2.0.0.0    NetSecurity
+Function        Set-NetFirewallInterfaceTypeFilter                 2.0.0.0    NetSecurity
+Function        Set-NetFirewallPortFilter                          2.0.0.0    NetSecurity
+Function        Set-NetFirewallProfile                             2.0.0.0    NetSecurity
+Function        Set-NetFirewallRule                                2.0.0.0    NetSecurity
+Function        Set-NetFirewallSecurityFilter                      2.0.0.0    NetSecurity
+Function        Set-NetFirewallServiceFilter                       2.0.0.0    NetSecurity
+Function        Set-NetFirewallSetting                             2.0.0.0    NetSecurity
+Function        Set-NetIPAddress                                   1.0.0.0    NetTCPIP
+Function        Set-NetIPHttpsConfiguration                        1.0.0.0    NetworkTransition
+Function        Set-NetIPInterface                                 1.0.0.0    NetTCPIP
+Function        Set-NetIPsecDospSetting                            2.0.0.0    NetSecurity
+Function        Set-NetIPsecMainModeCryptoSet                      2.0.0.0    NetSecurity
+Function        Set-NetIPsecMainModeRule                           2.0.0.0    NetSecurity
+Function        Set-NetIPsecPhase1AuthSet                          2.0.0.0    NetSecurity
+Function        Set-NetIPsecPhase2AuthSet                          2.0.0.0    NetSecurity
+Function        Set-NetIPsecQuickModeCryptoSet                     2.0.0.0    NetSecurity
+Function        Set-NetIPsecRule                                   2.0.0.0    NetSecurity
+Function        Set-NetIPv4Protocol                                1.0.0.0    NetTCPIP
+Function        Set-NetIPv6Protocol                                1.0.0.0    NetTCPIP
+Function        Set-NetIsatapConfiguration                         1.0.0.0    NetworkTransition
+Function        Set-NetLbfoTeam                                    2.0.0.0    NetLbfo
+Function        Set-NetLbfoTeamMember                              2.0.0.0    NetLbfo
+Function        Set-NetLbfoTeamNic                                 2.0.0.0    NetLbfo
+Function        Set-NetNat                                         1.0.0.0    NetNat
+Function        Set-NetNatGlobal                                   1.0.0.0    NetNat
+Function        Set-NetNatTransitionConfiguration                  1.0.0.0    NetworkTransition
+Function        Set-NetNeighbor                                    1.0.0.0    NetTCPIP
+Function        Set-NetOffloadGlobalSetting                        1.0.0.0    NetTCPIP
+Function        Set-NetQosPolicy                                   2.0.0.0    NetQos
+Function        Set-NetRoute                                       1.0.0.0    NetTCPIP
+Function        Set-NetTCPSetting                                  1.0.0.0    NetTCPIP
+Function        Set-NetTeredoConfiguration                         1.0.0.0    NetworkTransition
+Function        Set-NetUDPSetting                                  1.0.0.0    NetTCPIP
+Function        Set-NetworkSwitchEthernetPortIPAddress             1.0.0.0    NetworkSwitchManager
+Function        Set-NetworkSwitchPortMode                          1.0.0.0    NetworkSwitchManager
+Function        Set-NetworkSwitchPortProperty                      1.0.0.0    NetworkSwitchManager
+Function        Set-NetworkSwitchVlanProperty                      1.0.0.0    NetworkSwitchManager
+Function        Set-NfsClientConfiguration                         1.0        NFS
+Function        Set-NfsClientgroup                                 1.0        NFS
+Function        Set-NfsMappingStore                                1.0        NFS
+Function        Set-NfsNetgroupStore                               1.0        NFS
+Function        Set-NfsServerConfiguration                         1.0        NFS
+Function        Set-NfsShare                                       1.0        NFS
+Function        Set-OdbcDriver                                     1.0.0.0    Wdac
+Function        Set-OdbcDsn                                        1.0.0.0    Wdac
+Function        Set-Partition                                      2.0.0.0    Storage
+Function        Set-PcsvDeviceBootConfiguration                    1.0.0.0    PcsvDevice
+Function        Set-PcsvDeviceNetworkConfiguration                 1.0.0.0    PcsvDevice
+Function        Set-PcsvDeviceUserPassword                         1.0.0.0    PcsvDevice
+Function        Set-Person                                         1.0        odatademo
+Function        Set-PersonDetail                                   1.0        odatademo
+Function        Set-PhysicalDisk                                   2.0.0.0    Storage
+Function        Set-PrintConfiguration                             1.1        PrintManagement
+Function        Set-Printer                                        1.1        PrintManagement
+Function        Set-PrinterProperty                                1.1        PrintManagement
+Function        Set-Product                                        1.0        odatademo
+Function        Set-ProductDetail                                  1.0        odatademo
+Function        Set-PSRepository                                   2.1.4      PowerShellGet
+Function        Set-PSRepository                                   2.1.2      PowerShellGet
+Function        Set-PSRepository                                   1.0.0.1    PowerShellGet
+Function        Set-QuickReminder
+Function        Set-RDActiveManagementServer                       2.0.0.0    RemoteDesktop
+Function        Set-RDCertificate                                  2.0.0.0    RemoteDesktop
+Function        Set-RDClientAccessName                             2.0.0.0    RemoteDesktop
+Function        Set-RDConnectionBrokerHighAvailability             2.0.0.0    RemoteDesktop
+Function        Set-RDDatabaseConnectionString                     2.0.0.0    RemoteDesktop
+Function        Set-RDDeploymentGatewayConfiguration               2.0.0.0    RemoteDesktop
+Function        Set-RDFileTypeAssociation                          2.0.0.0    RemoteDesktop
+Function        Set-RDLicenseConfiguration                         2.0.0.0    RemoteDesktop
+Function        Set-RDPersonalSessionDesktopAssignment             2.0.0.0    RemoteDesktop
+Function        Set-RDPersonalVirtualDesktopAssignment             2.0.0.0    RemoteDesktop
+Function        Set-RDPersonalVirtualDesktopPatchSchedule          2.0.0.0    RemoteDesktop
+Function        Set-RDRemoteApp                                    2.0.0.0    RemoteDesktop
+Function        Set-RDRemoteDesktop                                2.0.0.0    RemoteDesktop
+Function        Set-RDSessionCollectionConfiguration               2.0.0.0    RemoteDesktop
+Function        Set-RDSessionHost                                  2.0.0.0    RemoteDesktop
+Function        Set-RDVirtualDesktopCollectionConfiguration        2.0.0.0    RemoteDesktop
+Function        Set-RDVirtualDesktopConcurrency                    2.0.0.0    RemoteDesktop
+Function        Set-RDVirtualDesktopIdleCount                      2.0.0.0    RemoteDesktop
+Function        Set-RDVirtualDesktopTemplateExportPath             2.0.0.0    RemoteDesktop
+Function        Set-RDWorkspace                                    2.0.0.0    RemoteDesktop
+Function        Set-ResiliencySetting                              2.0.0.0    Storage
+Function        Set-ScheduledTask                                  1.0.0.0    ScheduledTasks
+Function        Set-SmbBandwidthLimit                              2.0.0.0    SmbShare
+Function        Set-SmbClientConfiguration                         2.0.0.0    SmbShare
+Function        Set-SmbPathAcl                                     2.0.0.0    SmbShare
+Function        Set-SmbServerConfiguration                         2.0.0.0    SmbShare
+Function        Set-SmbShare                                       2.0.0.0    SmbShare
+Function        Set-StorageBusProfile                              1.0.0.0    StorageBusCache
+Function        Set-StorageFileServer                              2.0.0.0    Storage
+Function        Set-StorageHealthSetting                           2.0.0.0    Storage
+Function        Set-StoragePool                                    2.0.0.0    Storage
+Function        Set-StorageProvider                                2.0.0.0    Storage
+Function        Set-StorageSetting                                 2.0.0.0    Storage
+Function        Set-StorageSubSystem                               2.0.0.0    Storage
+Function        Set-StorageTier                                    2.0.0.0    Storage
+Function        Set-Supplier                                       1.0        odatademo
+Function        Set-TestInconclusive                               4.8.1      Pester
+Function        Set-TestInconclusive                               4.7.2      Pester
+Function        Set-TestInconclusive                               4.6.0      Pester
+Function        Set-TestInconclusive                               4.5.0      Pester
+Function        Set-TestInconclusive                               3.4.0      Pester
+Function        Set-TickleEvent                                    2.8.0      MyTickle
+Function        Set-Title
+Function        Set-Vegetable                                      3.0.0      PSTeachingTools
+Function        Set-VirtualDisk                                    2.0.0.0    Storage
+Function        Set-VMNote                                         0.5.1      PSHyperVTools
+Function        Set-Volume                                         2.0.0.0    Storage
+Function        Set-VolumeScrubPolicy                              2.0.0.0    Storage
+Function        Set-VpnConnection                                  2.0.0.0    VpnClient
+Function        Set-VpnConnectionIPsecConfiguration                2.0.0.0    VpnClient
+Function        Set-VpnConnectionProxy                             2.0.0.0    VpnClient
+Function        Set-VpnConnectionTriggerDnsConfiguration           2.0.0.0    VpnClient
+Function        Set-VpnConnectionTriggerTrustedNetwork             2.0.0.0    VpnClient
+Function        Set-WindowsActiveHours                             0.3.2      WindowsUpdateSetting
+Function        Set-WindowsUpdateDeferral                          0.3.2      WindowsUpdateSetting
+Cmdlet          Set-Acl                                            3.0.0.0    Microsoft.PowerShell.Security
+Cmdlet          Set-ADAccountAuthenticationPolicySilo              1.0.1.0    ActiveDirectory
+Cmdlet          Set-ADAccountControl                               1.0.1.0    ActiveDirectory
+Cmdlet          Set-ADAccountExpiration                            1.0.1.0    ActiveDirectory
+Cmdlet          Set-ADAccountPassword                              1.0.1.0    ActiveDirectory
+Cmdlet          Set-ADAuthenticationPolicy                         1.0.1.0    ActiveDirectory
+Cmdlet          Set-ADAuthenticationPolicySilo                     1.0.1.0    ActiveDirectory
+Cmdlet          Set-ADCentralAccessPolicy                          1.0.1.0    ActiveDirectory
+Cmdlet          Set-ADCentralAccessRule                            1.0.1.0    ActiveDirectory
+Cmdlet          Set-ADClaimTransformLink                           1.0.1.0    ActiveDirectory
+Cmdlet          Set-ADClaimTransformPolicy                         1.0.1.0    ActiveDirectory
+Cmdlet          Set-ADClaimType                                    1.0.1.0    ActiveDirectory
+Cmdlet          Set-ADComputer                                     1.0.1.0    ActiveDirectory
+Cmdlet          Set-ADDefaultDomainPasswordPolicy                  1.0.1.0    ActiveDirectory
+Cmdlet          Set-ADDomain                                       1.0.1.0    ActiveDirectory
+Cmdlet          Set-ADDomainMode                                   1.0.1.0    ActiveDirectory
+Cmdlet          Set-ADFineGrainedPasswordPolicy                    1.0.1.0    ActiveDirectory
+Cmdlet          Set-ADForest                                       1.0.1.0    ActiveDirectory
+Cmdlet          Set-ADForestMode                                   1.0.1.0    ActiveDirectory
+Cmdlet          Set-ADGroup                                        1.0.1.0    ActiveDirectory
+Cmdlet          Set-ADObject                                       1.0.1.0    ActiveDirectory
+Cmdlet          Set-ADOrganizationalUnit                           1.0.1.0    ActiveDirectory
+Cmdlet          Set-ADReplicationConnection                        1.0.1.0    ActiveDirectory
+Cmdlet          Set-ADReplicationSite                              1.0.1.0    ActiveDirectory
+Cmdlet          Set-ADReplicationSiteLink                          1.0.1.0    ActiveDirectory
+Cmdlet          Set-ADReplicationSiteLinkBridge                    1.0.1.0    ActiveDirectory
+Cmdlet          Set-ADReplicationSubnet                            1.0.1.0    ActiveDirectory
+Cmdlet          Set-ADResourceProperty                             1.0.1.0    ActiveDirectory
+Cmdlet          Set-ADResourcePropertyList                         1.0.1.0    ActiveDirectory
+Cmdlet          Set-ADServiceAccount                               1.0.1.0    ActiveDirectory
+Cmdlet          Set-ADUser                                         1.0.1.0    ActiveDirectory
+Cmdlet          Set-Alias                                          3.1.0.0    Microsoft.PowerShell.Utility
+Cmdlet          Set-AppBackgroundTaskResourcePolicy                1.0.0.0    AppBackgroundTask
+Cmdlet          Set-AppLockerPolicy                                2.0.0.0    AppLocker
+Cmdlet          Set-AppvClientConfiguration                        1.0.0.0    AppvClient
+Cmdlet          Set-AppvClientMode                                 1.0.0.0    AppvClient
+Cmdlet          Set-AppvClientPackage                              1.0.0.0    AppvClient
+Cmdlet          Set-AppvPublishingServer                           1.0.0.0    AppvClient
+Cmdlet          Set-AppxDefaultVolume                              2.0.1.0    Appx
+Cmdlet          Set-AppXProvisionedDataFile                        3.0        Dism
+Cmdlet          Set-AuthenticodeSignature                          3.0.0.0    Microsoft.PowerShell.Security
+Cmdlet          Set-AzActionGroup                                  1.1.0      Az.Monitor
+Cmdlet          Set-AzActivityLogAlert                             1.1.0      Az.Monitor
+Cmdlet          Set-AzAks                                          1.0.1      Az.Aks
+Cmdlet          Set-AzAnalysisServicesServer                       1.1.0      Az.AnalysisServices
+Cmdlet          Set-AzApiManagement                                1.0.0      Az.ApiManagement
+Cmdlet          Set-AzApiManagementApi                             1.0.0      Az.ApiManagement
+Cmdlet          Set-AzApiManagementApiRevision                     1.0.0      Az.ApiManagement
+Cmdlet          Set-AzApiManagementApiVersionSet                   1.0.0      Az.ApiManagement
+Cmdlet          Set-AzApiManagementAuthorizationServer             1.0.0      Az.ApiManagement
+Cmdlet          Set-AzApiManagementBackend                         1.0.0      Az.ApiManagement
+Cmdlet          Set-AzApiManagementCertificate                     1.0.0      Az.ApiManagement
+Cmdlet          Set-AzApiManagementGroup                           1.0.0      Az.ApiManagement
+Cmdlet          Set-AzApiManagementIdentityProvider                1.0.0      Az.ApiManagement
+Cmdlet          Set-AzApiManagementLogger                          1.0.0      Az.ApiManagement
+Cmdlet          Set-AzApiManagementOpenIdConnectProvider           1.0.0      Az.ApiManagement
+Cmdlet          Set-AzApiManagementOperation                       1.0.0      Az.ApiManagement
+Cmdlet          Set-AzApiManagementPolicy                          1.0.0      Az.ApiManagement
+Cmdlet          Set-AzApiManagementProduct                         1.0.0      Az.ApiManagement
+Cmdlet          Set-AzApiManagementProperty                        1.0.0      Az.ApiManagement
+Cmdlet          Set-AzApiManagementSubscription                    1.0.0      Az.ApiManagement
+Cmdlet          Set-AzApiManagementTenantAccess                    1.0.0      Az.ApiManagement
+Cmdlet          Set-AzApiManagementUser                            1.0.0      Az.ApiManagement
+Cmdlet          Set-AzApplicationGateway                           1.7.0      Az.Network
+Cmdlet          Set-AzApplicationGatewayAuthenticationCertificate  1.7.0      Az.Network
+Cmdlet          Set-AzApplicationGatewayAutoscaleConfiguration     1.7.0      Az.Network
+Cmdlet          Set-AzApplicationGatewayBackendAddressPool         1.7.0      Az.Network
+Cmdlet          Set-AzApplicationGatewayBackendHttpSetting         1.7.0      Az.Network
+Cmdlet          Set-AzApplicationGatewayConnectionDraining         1.7.0      Az.Network
+Cmdlet          Set-AzApplicationGatewayCustomError                1.7.0      Az.Network
+Cmdlet          Set-AzApplicationGatewayFirewallPolicy             1.7.0      Az.Network
+Cmdlet          Set-AzApplicationGatewayFrontendIPConfig           1.7.0      Az.Network
+Cmdlet          Set-AzApplicationGatewayFrontendPort               1.7.0      Az.Network
+Cmdlet          Set-AzApplicationGatewayHttpListener               1.7.0      Az.Network
+Cmdlet          Set-AzApplicationGatewayHttpListenerCustomError    1.7.0      Az.Network
+Cmdlet          Set-AzApplicationGatewayIdentity                   1.7.0      Az.Network
+Cmdlet          Set-AzApplicationGatewayIPConfiguration            1.7.0      Az.Network
+Cmdlet          Set-AzApplicationGatewayProbeConfig                1.7.0      Az.Network
+Cmdlet          Set-AzApplicationGatewayRedirectConfiguration      1.7.0      Az.Network
+Cmdlet          Set-AzApplicationGatewayRequestRoutingRule         1.7.0      Az.Network
+Cmdlet          Set-AzApplicationGatewayRewriteRuleSet             1.7.0      Az.Network
+Cmdlet          Set-AzApplicationGatewaySku                        1.7.0      Az.Network
+Cmdlet          Set-AzApplicationGatewaySslCertificate             1.7.0      Az.Network
+Cmdlet          Set-AzApplicationGatewaySslPolicy                  1.7.0      Az.Network
+Cmdlet          Set-AzApplicationGatewayTrustedRootCertificate     1.7.0      Az.Network
+Cmdlet          Set-AzApplicationGatewayUrlPathMapConfig           1.7.0      Az.Network
+Cmdlet          Set-AzApplicationGatewayWebApplicationFirewallC... 1.7.0      Az.Network
+Cmdlet          Set-AzApplicationInsightsContinuousExport          1.0.0      Az.ApplicationInsights
+Cmdlet          Set-AzApplicationInsightsDailyCap                  1.0.0      Az.ApplicationInsights
+Cmdlet          Set-AzApplicationInsightsPricingPlan               1.0.0      Az.ApplicationInsights
+Cmdlet          Set-AzAppServicePlan                               1.2.0      Az.Websites
+Cmdlet          Set-AzAutomationAccount                            1.2.1      Az.Automation
+Cmdlet          Set-AzAutomationCertificate                        1.2.1      Az.Automation
+Cmdlet          Set-AzAutomationConnectionFieldValue               1.2.1      Az.Automation
+Cmdlet          Set-AzAutomationCredential                         1.2.1      Az.Automation
+Cmdlet          Set-AzAutomationDscNode                            1.2.1      Az.Automation
+Cmdlet          Set-AzAutomationModule                             1.2.1      Az.Automation
+Cmdlet          Set-AzAutomationRunbook                            1.2.1      Az.Automation
+Cmdlet          Set-AzAutomationSchedule                           1.2.1      Az.Automation
+Cmdlet          Set-AzAutomationVariable                           1.2.1      Az.Automation
+Cmdlet          Set-AzAutomationWebhook                            1.2.1      Az.Automation
+Cmdlet          Set-AzBatchAccount                                 1.1.0      Az.Batch
+Cmdlet          Set-AzBatchApplication                             1.1.0      Az.Batch
+Cmdlet          Set-AzBatchComputeNodeUser                         1.1.0      Az.Batch
+Cmdlet          Set-AzBatchJob                                     1.1.0      Az.Batch
+Cmdlet          Set-AzBatchJobSchedule                             1.1.0      Az.Batch
+Cmdlet          Set-AzBatchPool                                    1.1.0      Az.Batch
+Cmdlet          Set-AzBatchPoolOSVersion                           1.1.0      Az.Batch
+Cmdlet          Set-AzBatchTask                                    1.1.0      Az.Batch
+Cmdlet          Set-AzCdnEndpoint                                  1.2.0      Az.Cdn
+Cmdlet          Set-AzCdnOrigin                                    1.2.0      Az.Cdn
+Cmdlet          Set-AzCdnProfile                                   1.2.0      Az.Cdn
+Cmdlet          Set-AzCognitiveServicesAccount                     1.1.0      Az.CognitiveServices
+Cmdlet          Set-AzConsumptionBudget                            1.0.0      Az.Billing
+Cmdlet          Set-AzContext                                      1.5.1      Az.Accounts
+Cmdlet          Set-AzCurrentStorageAccount                        1.2.0      Az.Storage
+Cmdlet          Set-AzDataFactoryGateway                           1.1.1      Az.DataFactory
+Cmdlet          Set-AzDataFactoryPipelineActivePeriod              1.1.1      Az.DataFactory
+Cmdlet          Set-AzDataFactorySliceStatus                       1.1.1      Az.DataFactory
+Cmdlet          Set-AzDataFactoryV2                                1.1.1      Az.DataFactory
+Cmdlet          Set-AzDataFactoryV2Dataset                         1.1.1      Az.DataFactory
+Cmdlet          Set-AzDataFactoryV2IntegrationRuntime              1.1.1      Az.DataFactory
+Cmdlet          Set-AzDataFactoryV2LinkedService                   1.1.1      Az.DataFactory
+Cmdlet          Set-AzDataFactoryV2Pipeline                        1.1.1      Az.DataFactory
+Cmdlet          Set-AzDataFactoryV2Trigger                         1.1.1      Az.DataFactory
+Cmdlet          Set-AzDataLakeAnalyticsAccount                     1.0.0      Az.DataLakeAnalytics
+Cmdlet          Set-AzDataLakeAnalyticsCatalogCredential           1.0.0      Az.DataLakeAnalytics
+Cmdlet          Set-AzDataLakeAnalyticsCatalogItemAclEntry         1.0.0      Az.DataLakeAnalytics
+Cmdlet          Set-AzDataLakeAnalyticsDataSource                  1.0.0      Az.DataLakeAnalytics
+Cmdlet          Set-AzDataLakeAnalyticsFirewallRule                1.0.0      Az.DataLakeAnalytics
+Cmdlet          Set-AzDataLakeStoreAccount                         1.2.0      Az.DataLakeStore
+Cmdlet          Set-AzDataLakeStoreFirewallRule                    1.2.0      Az.DataLakeStore
+Cmdlet          Set-AzDataLakeStoreItemAcl                         1.2.0      Az.DataLakeStore
+Cmdlet          Set-AzDataLakeStoreItemAclEntry                    1.2.0      Az.DataLakeStore
+Cmdlet          Set-AzDataLakeStoreItemExpiry                      1.2.0      Az.DataLakeStore
+Cmdlet          Set-AzDataLakeStoreItemOwner                       1.2.0      Az.DataLakeStore
+Cmdlet          Set-AzDataLakeStoreItemPermission                  1.2.0      Az.DataLakeStore
+Cmdlet          Set-AzDataLakeStoreTrustedIdProvider               1.2.0      Az.DataLakeStore
+Cmdlet          Set-AzDataLakeStoreVirtualNetworkRule              1.2.0      Az.DataLakeStore
+Cmdlet          Set-AzDefault                                      1.5.1      Az.Accounts
+Cmdlet          Set-AzDiagnosticSetting                            1.1.0      Az.Monitor
+Cmdlet          Set-AzDiskDiskEncryptionKey                        1.8.0      Az.Compute
+Cmdlet          Set-AzDiskImageReference                           1.8.0      Az.Compute
+Cmdlet          Set-AzDiskKeyEncryptionKey                         1.8.0      Az.Compute
+Cmdlet          Set-AzDiskUpdateDiskEncryptionKey                  1.8.0      Az.Compute
+Cmdlet          Set-AzDiskUpdateKeyEncryptionKey                   1.8.0      Az.Compute
+Cmdlet          Set-AzDnsRecordSet                                 1.0.0      Az.Dns
+Cmdlet          Set-AzDnsZone                                      1.0.0      Az.Dns
+Cmdlet          Set-AzDtlAllowedVMSizesPolicy                      1.0.0      Az.DevTestLabs
+Cmdlet          Set-AzDtlAutoShutdownPolicy                        1.0.0      Az.DevTestLabs
+Cmdlet          Set-AzDtlAutoStartPolicy                           1.0.0      Az.DevTestLabs
+Cmdlet          Set-AzDtlVMsPerLabPolicy                           1.0.0      Az.DevTestLabs
+Cmdlet          Set-AzDtlVMsPerUserPolicy                          1.0.0      Az.DevTestLabs
+Cmdlet          Set-AzEnvironment                                  1.5.1      Az.Accounts
+Cmdlet          Set-AzEventGridTopic                               1.1.1      Az.EventGrid
+Cmdlet          Set-AzEventHub                                     1.1.0      Az.EventHub
+Cmdlet          Set-AzEventHubAuthorizationRule                    1.1.0      Az.EventHub
+Cmdlet          Set-AzEventHubConsumerGroup                        1.1.0      Az.EventHub
+Cmdlet          Set-AzEventHubGeoDRConfigurationBreakPair          1.1.0      Az.EventHub
+Cmdlet          Set-AzEventHubGeoDRConfigurationFailOver           1.1.0      Az.EventHub
+Cmdlet          Set-AzEventHubNamespace                            1.1.0      Az.EventHub
+Cmdlet          Set-AzEventHubNetworkRuleSet                       1.1.0      Az.EventHub
+Cmdlet          Set-AzExpressRouteCircuit                          1.7.0      Az.Network
+Cmdlet          Set-AzExpressRouteCircuitPeeringConfig             1.7.0      Az.Network
+Cmdlet          Set-AzExpressRouteConnection                       1.7.0      Az.Network
+Cmdlet          Set-AzExpressRouteCrossConnection                  1.7.0      Az.Network
+Cmdlet          Set-AzExpressRouteGateway                          1.7.0      Az.Network
+Cmdlet          Set-AzExpressRoutePort                             1.7.0      Az.Network
+Cmdlet          Set-AzFirewall                                     1.7.0      Az.Network
+Cmdlet          Set-AzHDInsightClusterSize                         1.1.0      Az.HDInsight
+Cmdlet          Set-AzHDInsightDefaultStorage                      1.1.0      Az.HDInsight
+Cmdlet          Set-AzHDInsightPersistedScriptAction               1.1.0      Az.HDInsight
+Cmdlet          Set-AzImageOsDisk                                  1.8.0      Az.Compute
+Cmdlet          Set-AzIntegrationAccount                           1.2.1      Az.LogicApp
+Cmdlet          Set-AzIntegrationAccountAgreement                  1.2.1      Az.LogicApp
+Cmdlet          Set-AzIntegrationAccountAssembly                   1.2.1      Az.LogicApp
+Cmdlet          Set-AzIntegrationAccountBatchConfiguration         1.2.1      Az.LogicApp
+Cmdlet          Set-AzIntegrationAccountCertificate                1.2.1      Az.LogicApp
+Cmdlet          Set-AzIntegrationAccountGeneratedIcn               1.2.1      Az.LogicApp
+Cmdlet          Set-AzIntegrationAccountMap                        1.2.1      Az.LogicApp
+Cmdlet          Set-AzIntegrationAccountPartner                    1.2.1      Az.LogicApp
+Cmdlet          Set-AzIntegrationAccountReceivedIcn                1.2.1      Az.LogicApp
+Cmdlet          Set-AzIntegrationAccountSchema                     1.2.1      Az.LogicApp
+Cmdlet          Set-AzIotHub                                       1.1.0      Az.IotHub
+Cmdlet          Set-AzIotHubRoute                                  1.1.0      Az.IotHub
+Cmdlet          Set-AzIotHubVerifiedCertificate                    1.1.0      Az.IotHub
+Cmdlet          Set-AzKeyVaultAccessPolicy                         1.2.0      Az.KeyVault
+Cmdlet          Set-AzKeyVaultCertificateIssuer                    1.2.0      Az.KeyVault
+Cmdlet          Set-AzKeyVaultCertificatePolicy                    1.2.0      Az.KeyVault
+Cmdlet          Set-AzKeyVaultManagedStorageSasDefinition          1.2.0      Az.KeyVault
+Cmdlet          Set-AzKeyVaultSecret                               1.2.0      Az.KeyVault
+Cmdlet          Set-AzLoadBalancer                                 1.7.0      Az.Network
+Cmdlet          Set-AzLoadBalancerFrontendIpConfig                 1.7.0      Az.Network
+Cmdlet          Set-AzLoadBalancerInboundNatPoolConfig             1.7.0      Az.Network
+Cmdlet          Set-AzLoadBalancerInboundNatRuleConfig             1.7.0      Az.Network
+Cmdlet          Set-AzLoadBalancerOutboundRuleConfig               1.7.0      Az.Network
+Cmdlet          Set-AzLoadBalancerProbeConfig                      1.7.0      Az.Network
+Cmdlet          Set-AzLoadBalancerRuleConfig                       1.7.0      Az.Network
+Cmdlet          Set-AzLocalNetworkGateway                          1.7.0      Az.Network
+Cmdlet          Set-AzLogicApp                                     1.2.1      Az.LogicApp
+Cmdlet          Set-AzManagedApplication                           1.3.1      Az.Resources
+Cmdlet          Set-AzManagedApplicationDefinition                 1.3.1      Az.Resources
+Cmdlet          Set-AzMarketplaceTerms                             1.0.0      Az.MarketplaceOrdering
+Cmdlet          Set-AzMediaService                                 1.1.0      Az.Media
+Cmdlet          Set-AzMediaServiceKey                              1.1.0      Az.Media
+Cmdlet          Set-AzMlOpCluster                                  1.1.0      Az.MachineLearning
+Cmdlet          Set-AzNetworkInterface                             1.7.0      Az.Network
+Cmdlet          Set-AzNetworkInterfaceIpConfig                     1.7.0      Az.Network
+Cmdlet          Set-AzNetworkInterfaceTapConfig                    1.7.0      Az.Network
+Cmdlet          Set-AzNetworkProfile                               1.7.0      Az.Network
+Cmdlet          Set-AzNetworkSecurityGroup                         1.7.0      Az.Network
+Cmdlet          Set-AzNetworkSecurityRuleConfig                    1.7.0      Az.Network
+Cmdlet          Set-AzNetworkWatcherConfigFlowLog                  1.7.0      Az.Network
+Cmdlet          Set-AzNetworkWatcherConnectionMonitor              1.7.0      Az.Network
+Cmdlet          Set-AzNotificationHub                              1.1.0      Az.NotificationHubs
+Cmdlet          Set-AzNotificationHubAuthorizationRule             1.1.0      Az.NotificationHubs
+Cmdlet          Set-AzNotificationHubsNamespace                    1.1.0      Az.NotificationHubs
+Cmdlet          Set-AzNotificationHubsNamespaceAuthorizationRule   1.1.0      Az.NotificationHubs
+Cmdlet          Set-AzOperationalInsightsDataSource                1.2.0      Az.OperationalInsights
+Cmdlet          Set-AzOperationalInsightsIntelligencePack          1.2.0      Az.OperationalInsights
+Cmdlet          Set-AzOperationalInsightsSavedSearch               1.2.0      Az.OperationalInsights
+Cmdlet          Set-AzOperationalInsightsStorageInsight            1.2.0      Az.OperationalInsights
+Cmdlet          Set-AzOperationalInsightsWorkspace                 1.2.0      Az.OperationalInsights
+Cmdlet          Set-AzPolicyAssignment                             1.3.1      Az.Resources
+Cmdlet          Set-AzPolicyDefinition                             1.3.1      Az.Resources
+Cmdlet          Set-AzPolicySetDefinition                          1.3.1      Az.Resources
+Cmdlet          Set-AzPublicIpAddress                              1.7.0      Az.Network
+Cmdlet          Set-AzPublicIpPrefix                               1.7.0      Az.Network
+Cmdlet          Set-AzRecoveryServicesAsrAlertSetting              1.3.0      Az.RecoveryServices
+Cmdlet          Set-AzRecoveryServicesAsrReplicationProtectedItem  1.3.0      Az.RecoveryServices
+Cmdlet          Set-AzRecoveryServicesAsrVaultContext              1.3.0      Az.RecoveryServices
+Cmdlet          Set-AzRecoveryServicesBackupProperty               1.3.0      Az.RecoveryServices
+Cmdlet          Set-AzRecoveryServicesBackupProtectionPolicy       1.3.0      Az.RecoveryServices
+Cmdlet          Set-AzRecoveryServicesVaultContext                 1.3.0      Az.RecoveryServices
+Cmdlet          Set-AzRedisCache                                   1.1.0      Az.RedisCache
+Cmdlet          Set-AzRedisCacheDiagnostic                         1.1.0      Az.RedisCache
+Cmdlet          Set-AzRelayAuthorizationRule                       1.0.0      Az.Relay
+Cmdlet          Set-AzRelayHybridConnection                        1.0.0      Az.Relay
+Cmdlet          Set-AzRelayNamespace                               1.0.0      Az.Relay
+Cmdlet          Set-AzResource                                     1.3.1      Az.Resources
+Cmdlet          Set-AzResourceGroup                                1.3.1      Az.Resources
+Cmdlet          Set-AzResourceLock                                 1.3.1      Az.Resources
+Cmdlet          Set-AzRmStorageContainerImmutabilityPolicy         1.2.0      Az.Storage
+Cmdlet          Set-AzRoleDefinition                               1.3.1      Az.Resources
+Cmdlet          Set-AzRouteConfig                                  1.7.0      Az.Network
+Cmdlet          Set-AzRouteFilter                                  1.7.0      Az.Network
+Cmdlet          Set-AzRouteFilterRuleConfig                        1.7.0      Az.Network
+Cmdlet          Set-AzRouteTable                                   1.7.0      Az.Network
+Cmdlet          Set-AzServiceBusAuthorizationRule                  1.0.0      Az.ServiceBus
+Cmdlet          Set-AzServiceBusGeoDRConfigurationBreakPair        1.0.0      Az.ServiceBus
+Cmdlet          Set-AzServiceBusGeoDRConfigurationFailOver         1.0.0      Az.ServiceBus
+Cmdlet          Set-AzServiceBusNamespace                          1.0.0      Az.ServiceBus
+Cmdlet          Set-AzServiceBusQueue                              1.0.0      Az.ServiceBus
+Cmdlet          Set-AzServiceBusRule                               1.0.0      Az.ServiceBus
+Cmdlet          Set-AzServiceBusSubscription                       1.0.0      Az.ServiceBus
+Cmdlet          Set-AzServiceBusTopic                              1.0.0      Az.ServiceBus
+Cmdlet          Set-AzServiceEndpointPolicy                        1.7.0      Az.Network
+Cmdlet          Set-AzServiceEndpointPolicyDefinition              1.7.0      Az.Network
+Cmdlet          Set-AzServiceFabricSetting                         1.0.1      Az.ServiceFabric
+Cmdlet          Set-AzServiceFabricUpgradeType                     1.0.1      Az.ServiceFabric
+Cmdlet          Set-AzSnapshotDiskEncryptionKey                    1.8.0      Az.Compute
+Cmdlet          Set-AzSnapshotImageReference                       1.8.0      Az.Compute
+Cmdlet          Set-AzSnapshotKeyEncryptionKey                     1.8.0      Az.Compute
+Cmdlet          Set-AzSnapshotUpdateDiskEncryptionKey              1.8.0      Az.Compute
+Cmdlet          Set-AzSnapshotUpdateKeyEncryptionKey               1.8.0      Az.Compute
+Cmdlet          Set-AzSqlDatabase                                  1.9.0      Az.Sql
+Cmdlet          Set-AzSqlDatabaseAdvisorAutoExecuteStatus          1.9.0      Az.Sql
+Cmdlet          Set-AzSqlDatabaseAuditing                          1.9.0      Az.Sql
+Cmdlet          Set-AzSqlDatabaseBackupLongTermRetentionPolicy     1.9.0      Az.Sql
+Cmdlet          Set-AzSqlDatabaseBackupShortTermRetentionPolicy    1.9.0      Az.Sql
+Cmdlet          Set-AzSqlDatabaseDataMaskingPolicy                 1.9.0      Az.Sql
+Cmdlet          Set-AzSqlDatabaseDataMaskingRule                   1.9.0      Az.Sql
+Cmdlet          Set-AzSqlDatabaseFailoverGroup                     1.9.0      Az.Sql
+Cmdlet          Set-AzSqlDatabaseGeoBackupPolicy                   1.9.0      Az.Sql
+Cmdlet          Set-AzSqlDatabaseRecommendedActionState            1.9.0      Az.Sql
+Cmdlet          Set-AzSqlDatabaseSecondary                         1.9.0      Az.Sql
+Cmdlet          Set-AzSqlDatabaseSensitivityClassification         1.9.0      Az.Sql
+Cmdlet          Set-AzSqlDatabaseThreatDetectionPolicy             1.9.0      Az.Sql
+Cmdlet          Set-AzSqlDatabaseTransparentDataEncryption         1.9.0      Az.Sql
+Cmdlet          Set-AzSqlDatabaseVulnerabilityAssessmentRuleBas... 1.9.0      Az.Sql
+Cmdlet          Set-AzSqlElasticPool                               1.9.0      Az.Sql
+Cmdlet          Set-AzSqlElasticPoolAdvisorAutoExecuteStatus       1.9.0      Az.Sql
+Cmdlet          Set-AzSqlElasticPoolRecommendedActionState         1.9.0      Az.Sql
+Cmdlet          Set-AzSqlInstance                                  1.9.0      Az.Sql
+Cmdlet          Set-AzSqlInstanceDatabaseBackupShortTermRetenti... 1.9.0      Az.Sql
+Cmdlet          Set-AzSqlInstanceDatabaseSensitivityClassification 1.9.0      Az.Sql
+Cmdlet          Set-AzSqlInstanceDatabaseVulnerabilityAssessmen... 1.9.0      Az.Sql
+Cmdlet          Set-AzSqlServer                                    1.9.0      Az.Sql
+Cmdlet          Set-AzSqlServerActiveDirectoryAdministrator        1.9.0      Az.Sql
+Cmdlet          Set-AzSqlServerAdvisorAutoExecuteStatus            1.9.0      Az.Sql
+Cmdlet          Set-AzSqlServerAuditing                            1.9.0      Az.Sql
+Cmdlet          Set-AzSqlServerDisasterRecoveryConfiguration       1.9.0      Az.Sql
+Cmdlet          Set-AzSqlServerDnsAlias                            1.9.0      Az.Sql
+Cmdlet          Set-AzSqlServerFirewallRule                        1.9.0      Az.Sql
+Cmdlet          Set-AzSqlServerRecommendedActionState              1.9.0      Az.Sql
+Cmdlet          Set-AzSqlServerThreatDetectionPolicy               1.9.0      Az.Sql
+Cmdlet          Set-AzSqlServerTransparentDataEncryptionProtector  1.9.0      Az.Sql
+Cmdlet          Set-AzSqlServerVirtualNetworkRule                  1.9.0      Az.Sql
+Cmdlet          Set-AzStorageAccount                               1.2.0      Az.Storage
+Cmdlet          Set-AzStorageAccountManagementPolicy               1.2.0      Az.Storage
+Cmdlet          Set-AzStorageBlobContent                           1.2.0      Az.Storage
+Cmdlet          Set-AzStorageContainerAcl                          1.2.0      Az.Storage
+Cmdlet          Set-AzStorageContainerStoredAccessPolicy           1.2.0      Az.Storage
+Cmdlet          Set-AzStorageCORSRule                              1.2.0      Az.Storage
+Cmdlet          Set-AzStorageFileContent                           1.2.0      Az.Storage
+Cmdlet          Set-AzStorageQueueStoredAccessPolicy               1.2.0      Az.Storage
+Cmdlet          Set-AzStorageServiceLoggingProperty                1.2.0      Az.Storage
+Cmdlet          Set-AzStorageServiceMetricsProperty                1.2.0      Az.Storage
+Cmdlet          Set-AzStorageShareQuota                            1.2.0      Az.Storage
+Cmdlet          Set-AzStorageShareStoredAccessPolicy               1.2.0      Az.Storage
+Cmdlet          Set-AzStorageTableStoredAccessPolicy               1.2.0      Az.Storage
+Cmdlet          Set-AzTrafficManagerEndpoint                       1.0.1      Az.TrafficManager
+Cmdlet          Set-AzTrafficManagerProfile                        1.0.1      Az.TrafficManager
+Cmdlet          Set-AzureStorageBlobContent                        4.6.1      Azure.Storage
+Cmdlet          Set-AzureStorageContainerAcl                       4.6.1      Azure.Storage
+Cmdlet          Set-AzureStorageContainerStoredAccessPolicy        4.6.1      Azure.Storage
+Cmdlet          Set-AzureStorageCORSRule                           4.6.1      Azure.Storage
+Cmdlet          Set-AzureStorageFileContent                        4.6.1      Azure.Storage
+Cmdlet          Set-AzureStorageQueueStoredAccessPolicy            4.6.1      Azure.Storage
+Cmdlet          Set-AzureStorageServiceLoggingProperty             4.6.1      Azure.Storage
+Cmdlet          Set-AzureStorageServiceMetricsProperty             4.6.1      Azure.Storage
+Cmdlet          Set-AzureStorageShareQuota                         4.6.1      Azure.Storage
+Cmdlet          Set-AzureStorageShareStoredAccessPolicy            4.6.1      Azure.Storage
+Cmdlet          Set-AzureStorageTableStoredAccessPolicy            4.6.1      Azure.Storage
+Cmdlet          Set-AzVirtualNetwork                               1.7.0      Az.Network
+Cmdlet          Set-AzVirtualNetworkGateway                        1.7.0      Az.Network
+Cmdlet          Set-AzVirtualNetworkGatewayConnection              1.7.0      Az.Network
+Cmdlet          Set-AzVirtualNetworkGatewayConnectionSharedKey     1.7.0      Az.Network
+Cmdlet          Set-AzVirtualNetworkGatewayDefaultSite             1.7.0      Az.Network
+Cmdlet          Set-AzVirtualNetworkPeering                        1.7.0      Az.Network
+Cmdlet          Set-AzVirtualNetworkSubnetConfig                   1.7.0      Az.Network
+Cmdlet          Set-AzVirtualNetworkTap                            1.7.0      Az.Network
+Cmdlet          Set-AzVM                                           1.8.0      Az.Compute
+Cmdlet          Set-AzVMAccessExtension                            1.8.0      Az.Compute
+Cmdlet          Set-AzVMADDomainExtension                          1.8.0      Az.Compute
+Cmdlet          Set-AzVMAEMExtension                               1.8.0      Az.Compute
+Cmdlet          Set-AzVMBackupExtension                            1.8.0      Az.Compute
+Cmdlet          Set-AzVMBginfoExtension                            1.8.0      Az.Compute
+Cmdlet          Set-AzVMBootDiagnostic                             1.8.0      Az.Compute
+Cmdlet          Set-AzVMChefExtension                              1.8.0      Az.Compute
+Cmdlet          Set-AzVMCustomScriptExtension                      1.8.0      Az.Compute
+Cmdlet          Set-AzVMDataDisk                                   1.8.0      Az.Compute
+Cmdlet          Set-AzVMDiagnosticsExtension                       1.8.0      Az.Compute
+Cmdlet          Set-AzVMDiskEncryptionExtension                    1.8.0      Az.Compute
+Cmdlet          Set-AzVMDscExtension                               1.8.0      Az.Compute
+Cmdlet          Set-AzVMExtension                                  1.8.0      Az.Compute
+Cmdlet          Set-AzVMOperatingSystem                            1.8.0      Az.Compute
+Cmdlet          Set-AzVMOSDisk                                     1.8.0      Az.Compute
+Cmdlet          Set-AzVMPlan                                       1.8.0      Az.Compute
+Cmdlet          Set-AzVMSourceImage                                1.8.0      Az.Compute
+Cmdlet          Set-AzVMSqlServerExtension                         1.8.0      Az.Compute
+Cmdlet          Set-AzVmss                                         1.8.0      Az.Compute
+Cmdlet          Set-AzVmssBootDiagnostic                           1.8.0      Az.Compute
+Cmdlet          Set-AzVmssDiskEncryptionExtension                  1.8.0      Az.Compute
+Cmdlet          Set-AzVmssOsProfile                                1.8.0      Az.Compute
+Cmdlet          Set-AzVmssRollingUpgradePolicy                     1.8.0      Az.Compute
+Cmdlet          Set-AzVmssStorageProfile                           1.8.0      Az.Compute
+Cmdlet          Set-AzVmssVM                                       1.8.0      Az.Compute
+Cmdlet          Set-AzVpnClientIpsecParameter                      1.7.0      Az.Network
+Cmdlet          Set-AzWcfRelay                                     1.0.0      Az.Relay
+Cmdlet          Set-AzWebApp                                       1.2.0      Az.Websites
+Cmdlet          Set-AzWebAppSlot                                   1.2.0      Az.Websites
+Cmdlet          Set-AzWebAppSlotConfigName                         1.2.0      Az.Websites
+Cmdlet          Set-BitsTransfer                                   2.0.0.0    BitsTransfer
+Cmdlet          Set-BpaResult                                      1.0        BestPractices
+Cmdlet          Set-CertificateAutoEnrollmentPolicy                1.0.0.0    PKI
+Cmdlet          Set-CimInstance                                    1.0.0.0    CimCmdlets
+Cmdlet          Set-CIPolicyIdInfo                                 1.0        ConfigCI
+Cmdlet          Set-CIPolicySetting                                1.0        ConfigCI
+Cmdlet          Set-CIPolicyVersion                                1.0        ConfigCI
+Cmdlet          Set-Clipboard                                      3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Set-Content                                        3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Set-Culture                                        2.0.0.0    International
+Cmdlet          Set-Date                                           3.1.0.0    Microsoft.PowerShell.Utility
+Cmdlet          Set-DeliveryOptimizationStatus                     1.0.2.0    DeliveryOptimization
+Cmdlet          Set-DODownloadMode                                 1.0.2.0    DeliveryOptimization
+Cmdlet          Set-DOPercentageMaxBackgroundBandwidth             1.0.2.0    DeliveryOptimization
+Cmdlet          Set-DOPercentageMaxForegroundBandwidth             1.0.2.0    DeliveryOptimization
+Cmdlet          Set-DscLocalConfigurationManager                   1.1        PSDesiredStateConfiguration
+Cmdlet          Set-ExecutionPolicy                                3.0.0.0    Microsoft.PowerShell.Security
+Cmdlet          Set-HVCIOptions                                    1.0        ConfigCI
+Cmdlet          Set-IscsiServerTarget                              2.0.0.0    IscsiTarget
+Cmdlet          Set-IscsiTargetServerSetting                       2.0.0.0    IscsiTarget
+Cmdlet          Set-IscsiVirtualDisk                               2.0.0.0    IscsiTarget
+Cmdlet          Set-IscsiVirtualDiskSnapshot                       2.0.0.0    IscsiTarget
+Cmdlet          Set-Item                                           3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Set-ItemProperty                                   3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Set-JobTrigger                                     1.1.0.0    PSScheduledJob
+Cmdlet          Set-KdsConfiguration                               1.0.0.0    Kds
+Cmdlet          Set-LocalGroup                                     1.0.0.0    Microsoft.PowerShell.LocalAccounts
+Cmdlet          Set-LocalUser                                      1.0.0.0    Microsoft.PowerShell.LocalAccounts
+Cmdlet          Set-Location                                       3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Set-NfsMappedIdentity                              1.0        NFS
+Cmdlet          Set-NfsNetgroup                                    1.0        NFS
+Cmdlet          Set-NonRemovableAppsPolicy                         3.0        Dism
+Cmdlet          Set-PackageSource                                  1.4.1      PackageManagement
+Cmdlet          Set-ProcessMitigation                              1.0.11     ProcessMitigations
+Cmdlet          Set-PSBreakpoint                                   3.1.0.0    Microsoft.PowerShell.Utility
+Cmdlet          Set-PSDebug                                        3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Set-PSReadLineKeyHandler                           2.0.0      PSReadline
+Cmdlet          Set-PSReadLineOption                               2.0.0      PSReadline
+Cmdlet          Set-PSSessionConfiguration                         3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Set-RuleOption                                     1.0        ConfigCI
+Cmdlet          Set-ScheduledJob                                   1.1.0.0    PSScheduledJob
+Cmdlet          Set-ScheduledJobOption                             1.1.0.0    PSScheduledJob
+Cmdlet          Set-SecureBootUEFI                                 2.0.0.0    SecureBoot
+Cmdlet          Set-Service                                        3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Set-SPOBrowserIdleSignOut                          16.0.89... Microsoft.Online.SharePoint.PowerShell
+Cmdlet          Set-SPOBuiltInDesignPackageVisibility              16.0.89... Microsoft.Online.SharePoint.PowerShell
+Cmdlet          Set-SPOGeoStorageQuota                             16.0.89... Microsoft.Online.SharePoint.PowerShell
+Cmdlet          Set-SPOHideDefaultThemes                           16.0.89... Microsoft.Online.SharePoint.PowerShell
+Cmdlet          Set-SPOHomeSite                                    16.0.89... Microsoft.Online.SharePoint.PowerShell
+Cmdlet          Set-SPOHubSite                                     16.0.89... Microsoft.Online.SharePoint.PowerShell
+Cmdlet          Set-SPOMigrationPackageAzureSource                 16.0.89... Microsoft.Online.SharePoint.PowerShell
+Cmdlet          Set-SPOMultiGeoCompanyAllowedDataLocation          16.0.89... Microsoft.Online.SharePoint.PowerShell
+Cmdlet          Set-SPOMultiGeoExperience                          16.0.89... Microsoft.Online.SharePoint.PowerShell
+Cmdlet          Set-SPOOrgAssetsLibrary                            16.0.89... Microsoft.Online.SharePoint.PowerShell
+Cmdlet          Set-SPOOrgNewsSite                                 16.0.89... Microsoft.Online.SharePoint.PowerShell
+Cmdlet          Set-SPOSite                                        16.0.89... Microsoft.Online.SharePoint.PowerShell
+Cmdlet          Set-SPOSiteDesign                                  16.0.89... Microsoft.Online.SharePoint.PowerShell
+Cmdlet          Set-SPOSiteGroup                                   16.0.89... Microsoft.Online.SharePoint.PowerShell
+Cmdlet          Set-SPOSiteOffice365Group                          16.0.89... Microsoft.Online.SharePoint.PowerShell
+Cmdlet          Set-SPOSiteScript                                  16.0.89... Microsoft.Online.SharePoint.PowerShell
+Cmdlet          Set-SPOStorageEntity                               16.0.89... Microsoft.Online.SharePoint.PowerShell
+Cmdlet          Set-SPOTenant                                      16.0.89... Microsoft.Online.SharePoint.PowerShell
+Cmdlet          Set-SPOTenantCdnEnabled                            16.0.89... Microsoft.Online.SharePoint.PowerShell
+Cmdlet          Set-SPOTenantCdnPolicy                             16.0.89... Microsoft.Online.SharePoint.PowerShell
+Cmdlet          Set-SPOTenantContentTypeReplicationParameters      16.0.89... Microsoft.Online.SharePoint.PowerShell
+Cmdlet          Set-SPOTenantSyncClientRestriction                 16.0.89... Microsoft.Online.SharePoint.PowerShell
+Cmdlet          Set-SPOTenantTaxonomyReplicationParameters         16.0.89... Microsoft.Online.SharePoint.PowerShell
+Cmdlet          Set-SPOUnifiedGroup                                16.0.89... Microsoft.Online.SharePoint.PowerShell
+Cmdlet          Set-SPOUser                                        16.0.89... Microsoft.Online.SharePoint.PowerShell
+Cmdlet          Set-SPOWebTheme                                    16.0.89... Microsoft.Online.SharePoint.PowerShell
+Cmdlet          Set-StrictMode                                     3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Set-TimeZone                                       3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Set-TpmOwnerAuth                                   2.0.0.0    TrustedPlatformModule
+Cmdlet          Set-TraceSource                                    3.1.0.0    Microsoft.PowerShell.Utility
+Cmdlet          Set-UevConfiguration                               2.1.639.0  UEV
+Cmdlet          Set-UevTemplateProfile                             2.1.639.0  UEV
+Cmdlet          Set-Variable                                       3.1.0.0    Microsoft.PowerShell.Utility
+Cmdlet          Set-VHD                                            2.0.0.0    Hyper-V
+Cmdlet          Set-VM                                             2.0.0.0    Hyper-V
+Cmdlet          Set-VMBios                                         2.0.0.0    Hyper-V
+Cmdlet          Set-VMComPort                                      2.0.0.0    Hyper-V
+Cmdlet          Set-VMDvdDrive                                     2.0.0.0    Hyper-V
+Cmdlet          Set-VMFibreChannelHba                              2.0.0.0    Hyper-V
+Cmdlet          Set-VMFirmware                                     2.0.0.0    Hyper-V
+Cmdlet          Set-VMFloppyDiskDrive                              2.0.0.0    Hyper-V
+Cmdlet          Set-VMGpuPartitionAdapter                          2.0.0.0    Hyper-V
+Cmdlet          Set-VMHardDiskDrive                                2.0.0.0    Hyper-V
+Cmdlet          Set-VMHost                                         2.0.0.0    Hyper-V
+Cmdlet          Set-VMHostCluster                                  2.0.0.0    Hyper-V
+Cmdlet          Set-VMKeyProtector                                 2.0.0.0    Hyper-V
+Cmdlet          Set-VMKeyStorageDrive                              2.0.0.0    Hyper-V
+Cmdlet          Set-VMMemory                                       2.0.0.0    Hyper-V
+Cmdlet          Set-VMMigrationNetwork                             2.0.0.0    Hyper-V
+Cmdlet          Set-VMNetworkAdapter                               2.0.0.0    Hyper-V
+Cmdlet          Set-VMNetworkAdapterFailoverConfiguration          2.0.0.0    Hyper-V
+Cmdlet          Set-VMNetworkAdapterIsolation                      2.0.0.0    Hyper-V
+Cmdlet          Set-VMNetworkAdapterRdma                           2.0.0.0    Hyper-V
+Cmdlet          Set-VMNetworkAdapterRoutingDomainMapping           2.0.0.0    Hyper-V
+Cmdlet          Set-VMNetworkAdapterTeamMapping                    2.0.0.0    Hyper-V
+Cmdlet          Set-VMNetworkAdapterVlan                           2.0.0.0    Hyper-V
+Cmdlet          Set-VMPartitionableGpu                             2.0.0.0    Hyper-V
+Cmdlet          Set-VMProcessor                                    2.0.0.0    Hyper-V
+Cmdlet          Set-VMRemoteFx3dVideoAdapter                       2.0.0.0    Hyper-V
+Cmdlet          Set-VMReplication                                  2.0.0.0    Hyper-V
+Cmdlet          Set-VMReplicationAuthorizationEntry                2.0.0.0    Hyper-V
+Cmdlet          Set-VMReplicationServer                            2.0.0.0    Hyper-V
+Cmdlet          Set-VMResourcePool                                 2.0.0.0    Hyper-V
+Cmdlet          Set-VMSan                                          2.0.0.0    Hyper-V
+Cmdlet          Set-VMSecurity                                     2.0.0.0    Hyper-V
+Cmdlet          Set-VMSecurityPolicy                               2.0.0.0    Hyper-V
+Cmdlet          Set-VMStorageSettings                              2.0.0.0    Hyper-V
+Cmdlet          Set-VMSwitch                                       2.0.0.0    Hyper-V
+Cmdlet          Set-VMSwitchExtensionPortFeature                   2.0.0.0    Hyper-V
+Cmdlet          Set-VMSwitchExtensionSwitchFeature                 2.0.0.0    Hyper-V
+Cmdlet          Set-VMSwitchTeam                                   2.0.0.0    Hyper-V
+Cmdlet          Set-VMVideo                                        2.0.0.0    Hyper-V
+Cmdlet          Set-WheaMemoryPolicy                               2.0.0.0    Whea
+Cmdlet          Set-WinAcceptLanguageFromLanguageListOptOut        2.0.0.0    International
+Cmdlet          Set-WinCultureFromLanguageListOptOut               2.0.0.0    International
+Cmdlet          Set-WinDefaultInputMethodOverride                  2.0.0.0    International
+Cmdlet          Set-WindowsEdition                                 3.0        Dism
+Cmdlet          Set-WindowsProductKey                              3.0        Dism
+Cmdlet          Set-WindowsSearchSetting                           1.0.0.0    WindowsSearch
+Cmdlet          Set-WinHomeLocation                                2.0.0.0    International
+Cmdlet          Set-WinLanguageBarOption                           2.0.0.0    International
+Cmdlet          Set-WinSystemLocale                                2.0.0.0    International
+Cmdlet          Set-WinUILanguageOverride                          2.0.0.0    International
+Cmdlet          Set-WinUserLanguageList                            2.0.0.0    International
+Cmdlet          Set-WmiInstance                                    3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Set-WSManInstance                                  3.0.0.0    Microsoft.WSMan.Management
+Cmdlet          Set-WSManQuickConfig                               3.0.0.0    Microsoft.WSMan.Management
+
+
+PS C:\work> Set-ExecutionPolicy RemoteSigned -force
+PS C:\work> notepad
+PS C:\work> stop-process notepad
+>> TerminatingError(Stop-Process): "Cannot bind parameter 'InputObject'. Cannot convert the "notepad" value of type "System.String" to type "System.Diagnostics.Process"."
+Stop-Process : Cannot bind parameter 'InputObject'. Cannot convert the "notepad" value of type "System.String" to type 
+"System.Diagnostics.Process".
+At line:1 char:14
++ stop-process notepad
++              ~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Stop-Process], ParameterBindingException
+    + FullyQualifiedErrorId : CannotConvertArgumentNoMessage,Microsoft.PowerShell.Commands.StopProcessCommand
+Stop-Process : Cannot bind parameter 'InputObject'. Cannot convert the "notepad" value of type "System.String" to
+type "System.Diagnostics.Process".
+At line:1 char:14
++ stop-process notepad
++              ~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Stop-Process], ParameterBindingException
+    + FullyQualifiedErrorId : CannotConvertArgumentNoMessage,Microsoft.PowerShell.Commands.StopProcessCommand
+
+PS C:\work> get-process notepad | stop-process
+PS C:\work> stop-transcript
+**********************
+Windows PowerShell transcript end
+End time: 20190919025531
+**********************

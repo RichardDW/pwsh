@@ -104,7 +104,7 @@ ForEach-Object {
   }
 }
 
-
+[math].GetMembers() | Select-Object Name, MemberType -Unique | Sort-Object MemberType, Name
 
 ## Try Catch
 
@@ -134,16 +134,20 @@ Get-Process | Where-Object StartTime | foreach {
 
 
 
+
+
 #region disk history
 #params
 Param(
   [string[]]$Computername = $env:COMPUTERNAME
 )
-
+# sample usage
+# .\GetDiskHistory.ps1 -Computername Mars, Moon, Saturn
 $Computername = "localhost","MARS"
 
 # Path to csv file
 $CSV = "d:\data\diskhist.csv"
+Test-Path -Path $CSV
 
 # initialize an empty array
 $data = @()
@@ -155,7 +159,7 @@ $cimParams = @{
   ErrorAction = "Stop"
 }
 
-Write-Host "Getting disk information for following computers: $Computername" -ForegroundColor Cyan
+Write-Host "Getting disk information for following computers: $Computername" -ForegroundColor Blue
 foreach ($computer in $Computername) {
   Write-Host "Getting disk information from $computer." -ForegroundColor Cyan
   # update the hashtable on the fly
@@ -178,6 +182,11 @@ foreach ($computer in $Computername) {
 #only export if there is something in $data
 if ($data) {
   $data | Export-Csv -Path $csv -Append -NoTypeInformation
+  Write-Host "Disk report complete. See $CSV." -ForegroundColor Green
+
+}
+else {
+  Write-Host "No disk data found." -ForegroundColor Yellow
 }
 
 #endregion disk history

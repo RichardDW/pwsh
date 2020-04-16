@@ -1,0 +1,179 @@
+﻿
+**********************
+Windows PowerShell transcript start
+Start time: 20190919025556
+Username: THINKP1\Jeff
+RunAs User: THINKP1\Jeff
+Configuration Name: 
+Machine: THINKP1 (Microsoft Windows NT 10.0.18362.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 13116
+PSVersion: 5.1.18362.145
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.18362.145
+BuildVersion: 10.0.18362.145
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is c:\work\trans-3.txt
+PS C:\work> get-process code
+
+Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName
+-------  ------    -----      -----     ------     --  -- -----------
+    661      30   117284     130712      23.44   2508   1 Code
+    462      96   233392     259280       9.33   2960   1 Code
+    390      40    53264      71168       5.16   6312   1 Code
+    244      36    53900      69676       3.28   6644   1 Code
+    245      16     6324      11000       0.00  12764   1 Code
+    499      66   173460     207428      73.58  15432   1 Code
+    239      20    21564      36900       0.22  16536   1 Code
+    908      45    40820      79464      35.14  17996   1 Code
+
+
+PS C:\work> get-process code | measure ws -sum | select count,sum
+
+Count       Sum
+-----       ---
+    8 886484992
+
+
+PS C:\work> get-process code | measure ws -sum | select count,@{Name="SumMB";Expression={$_.sum/1gb}}
+
+Count             SumMB
+-----             -----
+    8 0.824909210205078
+
+
+PS C:\work> help set-vmswitch
+
+PS C:\work> Get-VMSwitch
+
+Name           SwitchType NetAdapterInterfaceDescription
+----           ---------- ------------------------------
+LabNet         Internal
+Default Switch Internal
+
+
+PS C:\work> Set-VMSwitch Labnet -Notes "Test network virtual switch using NAT"
+PS C:\work> Get-DscLocalConfigurationManager
+
+
+ActionAfterReboot              : ContinueConfiguration
+AgentId                        : E09838E3-DAAA-11E9-AE51-482AE31D27CB
+AllowModuleOverWrite           : False
+CertificateID                  :
+ConfigurationDownloadManagers  : {}
+ConfigurationID                :
+ConfigurationMode              : ApplyAndMonitor
+ConfigurationModeFrequencyMins : 15
+Credential                     :
+DebugMode                      : {NONE}
+DownloadManagerCustomData      :
+DownloadManagerName            :
+LCMCompatibleVersions          : {1.0, 2.0}
+LCMState                       : Idle
+LCMStateDetail                 :
+LCMVersion                     : 2.0
+StatusRetentionTimeInDays      : 10
+SignatureValidationPolicy      : NONE
+SignatureValidations           : {}
+MaximumDownloadSizeMB          : 500
+PartialConfigurations          :
+RebootNodeIfNeeded             : False
+RefreshFrequencyMins           : 30
+RefreshMode                    : PUSH
+ReportManagers                 : {}
+ResourceModuleManagers         : {}
+PSComputerName                 :
+
+
+
+PS C:\work> help set-service
+
+PS C:\work> Get-PSReadLineOption
+
+
+EditMode                               : Windows
+AddToHistoryHandler                    :
+HistoryNoDuplicates                    : True
+HistorySavePath                        : C:\Users\Jeff Hicks\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\
+                                         ConsoleHost_history.txt
+HistorySaveStyle                       : SaveIncrementally
+HistorySearchCaseSensitive             : False
+HistorySearchCursorMovesToEnd          : False
+MaximumHistoryCount                    : 1000
+ContinuationPrompt                     : >>
+ExtraPromptLineCount                   : 0
+PromptText                             : >
+BellStyle                              : Audible
+DingDuration                           : 50
+DingTone                               : 1221
+CommandsToValidateScriptBlockArguments : {ForEach-Object, %, Invoke-Command, icm...}
+CommandValidationHandler               :
+CompletionQueryItems                   : 100
+MaximumKillRingCount                   : 10
+ShowToolTips                           : True
+ViModeIndicator                        : None
+WordDelimiters                         : ;:,.[]{}()/\|^&*-=+'"–—―
+CommandColor                           : [93m"$([char]0x1b)[93m"[0m
+CommentColor                           : [32m"$([char]0x1b)[32m"[0m
+ContinuationPromptColor                : [33m"$([char]0x1b)[33m"[0m
+DefaultTokenColor                      : [33m"$([char]0x1b)[33m"[0m
+EmphasisColor                          : [96m"$([char]0x1b)[96m"[0m
+ErrorColor                             : [91m"$([char]0x1b)[91m"[0m
+KeywordColor                           : [92m"$([char]0x1b)[92m"[0m
+MemberColor                            : [97m"$([char]0x1b)[97m"[0m
+NumberColor                            : [97m"$([char]0x1b)[97m"[0m
+OperatorColor                          : [90m"$([char]0x1b)[90m"[0m
+ParameterColor                         : [90m"$([char]0x1b)[90m"[0m
+SelectionColor                         : [35;43m"$([char]0x1b)[35;43m"[0m
+StringColor                            : [36m"$([char]0x1b)[36m"[0m
+TypeColor                              : [37m"$([char]0x1b)[37m"[0m
+VariableColor                          : [92m"$([char]0x1b)[92m"[0m
+
+
+
+PS C:\work> Set-PSReadLineOption -HistoryNoDuplicates $True -MaximumHistoryCount 500
+>> TerminatingError(Set-PSReadLineOption): "A positional parameter cannot be found that accepts argument 'True'."
+Set-PSReadLineOption : A positional parameter cannot be found that accepts argument 'True'.
+At line:1 char:1
++ Set-PSReadLineOption -HistoryNoDuplicates $True -MaximumHistoryCount  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Set-PSReadLineOption], ParameterBindingException
+    + FullyQualifiedErrorId : PositionalParameterNotFound,Microsoft.PowerShell.SetPSReadLineOption
+Set-PSReadLineOption : A positional parameter cannot be found that accepts argument 'True'.
+At line:1 char:1
++ Set-PSReadLineOption -HistoryNoDuplicates $True -MaximumHistoryCount  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Set-PSReadLineOption], ParameterBindingException
+    + FullyQualifiedErrorId : PositionalParameterNotFound,Microsoft.PowerShell.SetPSReadLineOption
+
+PS C:\work> Set-PSReadLineOption -HistoryNoDuplicates -MaximumHistoryCount 500
+PS C:\work> Get-PSReadLineOption | select *history*
+
+
+AddToHistoryHandler           :
+HistoryNoDuplicates           : True
+MaximumHistoryCount           : 500
+HistorySearchCursorMovesToEnd : False
+HistorySearchCaseSensitive    : False
+HistorySavePath               : C:\Users\Jeff
+                                Hicks\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+HistorySaveStyle              : SaveIncrementally
+
+
+
+PS C:\work> get-process *ise
+
+Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName
+-------  ------    -----      -----     ------     --  -- -----------
+   1519      73   246548     292720      23.61  19272   1 powershell_ise
+
+
+PS C:\work> stop-transcript
+**********************
+Windows PowerShell transcript end
+End time: 20190919030143
+**********************

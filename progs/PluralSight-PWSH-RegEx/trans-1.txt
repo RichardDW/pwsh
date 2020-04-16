@@ -1,0 +1,227 @@
+﻿
+**********************
+Windows PowerShell transcript start
+Start time: 20190919024341
+Username: THINKP1\Jeff
+RunAs User: THINKP1\Jeff
+Configuration Name: 
+Machine: THINKP1 (Microsoft Windows NT 10.0.18362.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 13116
+PSVersion: 5.1.18362.145
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.18362.145
+BuildVersion: 10.0.18362.145
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is c:\work\trans-1.txt
+PS C:\> get-service bits
+
+Status   Name               DisplayName
+------   ----               -----------
+Running  bits               Background Intelligent Transfer Ser...
+
+
+PS C:\> get-process svchost
+
+Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName
+-------  ------    -----      -----     ------     --  -- -----------
+    163       9     2132      11448       0.38   1152   0 svchost
+     86       5      960       3496       0.02   1384   0 svchost
+    255      13     2764       9776       1.53   1404   0 svchost
+   1378      24    14728      30536      24.81   1408   0 svchost
+    180       7     1628       5464       0.39   1576   0 svchost
+   1656      20    11092      17548      43.70   1660   0 svchost
+    328      10     3052       7996       2.95   1736   0 svchost
+    104      10     1220       4448       0.05   1992   0 svchost
+    500      15    19552      16288       9.58   2096   0 svchost
+    432      18     7076      15132       5.06   2104   0 svchost
+    227      13     2872      10844       0.58   2176   0 svchost
+    254      10     2300       7880       0.20   2184   0 svchost
+    187      38     9112      11424       6.83   2328   0 svchost
+    260      10     3044       9176       2.16   2336   0 svchost
+    125       8     1636       6264       0.08   2472   0 svchost
+    270      11     3060       7660      17.98   2524   0 svchost
+    123       9     1752       5696       0.08   2788   1 svchost
+    262      13     2684      10528       0.23   2844   0 svchost
+    316      14     3892       8240      87.05   2904   0 svchost
+    416      17     5952      12404      24.78   2968   0 svchost
+    177      11     2340       9260       1.44   3008   0 svchost
+    205      10     7200      15252      34.97   3020   0 svchost
+    223      12     2616      10048       0.50   3164   0 svchost
+   1016      16     4296       9344      24.78   3224   0 svchost
+    267       7     1344       5180       0.19   3324   0 svchost
+    223      12     2640      12504      12.25   3332   0 svchost
+    184       9     2040       7112       0.42   3344   0 svchost
+    182      12     2008       7752       0.58   3544   0 svchost
+    199      10     2220       7052       5.89   3584   0 svchost
+    199      10     2048       7264       1.95   3660   0 svchost
+    165      10     1956       7960       6.81   3668   0 svchost
+    278      14     3920      16896       8.45   3916   0 svchost
+    474      18     9208      24932       4.70   4072   1 svchost
+    695      24     9592      37832       9.91   4120   1 svchost
+    450      24     6012      18500       2.41   4264   0 svchost
+    168       9     1900       6824       0.09   4448   0 svchost
+    391      13     3640      13184       4.84   4500   0 svchost
+    374      14     3228       8952       3.72   4716   0 svchost
+    141      10     1864       6076       0.91   4732   0 svchost
+    555      21     7284      17080       3.63   4936   0 svchost
+    246      14     3020      12852       0.61   5092   0 svchost
+    294      16     3928      14292       0.89   5184   0 svchost
+    440      34    19560      22812      37.81   5208   0 svchost
+    191      11     2300       7420       1.33   5284   0 svchost
+    196      10     2528       6648       2.19   5424   0 svchost
+    206      12     2400       7808      15.95   5512   0 svchost
+    225      12     2980      10456       6.72   5656   0 svchost
+    232      12     2344       9032       0.20   5772   0 svchost
+    416      29     6764      15636       5.14   5788   0 svchost
+    400      23    38736      46256      66.44   5820   0 svchost
+    215       9     2208       6736       0.61   5828   0 svchost
+    273      14     2932       7760       6.20   5872   0 svchost
+    773      16    10600      19236      17.72   5880   0 svchost
+    444      21     5612      22660       3.19   5936   0 svchost
+    135       9     1624       5456       0.09   5968   0 svchost
+    136       7     1300       4780       0.06   5980   0 svchost
+    580      27    17592      26072       9.84   5988   0 svchost
+    511      19     4472      11840       8.69   6584   0 svchost
+    285      21     2608       6852       4.97   6800   0 svchost
+    396      24     3492      10640       0.55   6820   0 svchost
+    109       7     1344       4644       0.27   6860   0 svchost
+    179      13     2092       7692       0.13   7984   0 svchost
+    227      12     2580       8900       0.48   8352   0 svchost
+    177      10     1848       7928       0.16   8896   0 svchost
+    262      12     4348       8796       0.27   9672   0 svchost
+    156      10     2088       7908       0.20   9940   0 svchost
+    180      11     2348       9328       1.33  10076   0 svchost
+    298      14     3532      19256       0.63  10156   1 svchost
+    291      14     3984      10632       1.50  10452   0 svchost
+    137       8     1756       5972       0.11  10524   0 svchost
+    191      15     6760       8380       0.08  10732   0 svchost
+    547      31    11680      18952       2.11  10768   0 svchost
+    217      15     2360       9160       3.81  11108   0 svchost
+    140       8     1604       6344       0.02  12328   1 svchost
+    281      17     4800      14592      19.38  12644   0 svchost
+    159       9     1852       9576       0.14  13796   0 svchost
+    244      14     2920      10092       0.16  14688   1 svchost
+    429      19     6680      16676      18.13  15368   0 svchost
+    210      12     2760       8880       4.11  15496   0 svchost
+    288      12     2884      11060       0.23  15640   0 svchost
+    234      11     2612       7916       0.23  16688   0 svchost
+    335      16     7236      17004       1.70  16888   0 svchost
+    257      16     2764      10620       2.44  17292   0 svchost
+    140       9     1732       6404       0.09  18336   0 svchost
+    357      30    10052      20208       0.11  19392   0 svchost
+    271      16     3112       8792       2.81  19660   0 svchost
+    425      17     4848      18340       0.72  20336   0 svchost
+
+
+PS C:\> get-process svchost | measure
+
+
+Count    : 87
+Average  :
+Sum      :
+Maximum  :
+Minimum  :
+Property :
+
+
+
+PS C:\> get-ciminstance win32_operatingsystem
+
+SystemDirectory     Organization BuildNumber RegisteredUser SerialNumber            Version
+---------------     ------------ ----------- -------------- ------------            -------
+C:\WINDOWS\system32              18362       Jeff Hicks     00330-50000-00000-AAOEM 10.0.18362
+
+
+PS C:\> get-ciminstance win32_operatingsystem | select *
+
+
+Status                                    : OK
+Name                                      : Microsoft Windows 10 Pro|C:\WINDOWS|\Device\Harddisk1\Partition3
+FreePhysicalMemory                        : 17052196
+FreeSpaceInPagingFiles                    : 4967476
+FreeVirtualMemory                         : 19532592
+Caption                                   : Microsoft Windows 10 Pro
+Description                               :
+InstallDate                               : 7/7/2019 11:29:28 AM
+CreationClassName                         : Win32_OperatingSystem
+CSCreationClassName                       : Win32_ComputerSystem
+CSName                                    : THINKP1
+CurrentTimeZone                           : -240
+Distributed                               : False
+LastBootUpTime                            : 9/17/2019 1:42:40 AM
+LocalDateTime                             : 9/19/2019 2:48:10 AM
+MaxNumberOfProcesses                      : 4294967295
+MaxProcessMemorySize                      : 137438953344
+NumberOfLicensedUsers                     : 0
+NumberOfProcesses                         : 273
+NumberOfUsers                             : 3
+OSType                                    : 18
+OtherTypeDescription                      :
+SizeStoredInPagingFiles                   : 4980736
+TotalSwapSpaceSize                        :
+TotalVirtualMemorySize                    : 38060776
+TotalVisibleMemorySize                    : 33080040
+Version                                   : 10.0.18362
+BootDevice                                : \Device\HarddiskVolume3
+BuildNumber                               : 18362
+BuildType                                 : Multiprocessor Free
+CodeSet                                   : 1252
+CountryCode                               : 1
+CSDVersion                                :
+DataExecutionPrevention_32BitApplications : True
+DataExecutionPrevention_Available         : True
+DataExecutionPrevention_Drivers           : True
+DataExecutionPrevention_SupportPolicy     : 2
+Debug                                     : False
+EncryptionLevel                           : 256
+ForegroundApplicationBoost                : 2
+LargeSystemCache                          :
+Locale                                    : 0409
+Manufacturer                              : Microsoft Corporation
+MUILanguages                              : {en-US}
+OperatingSystemSKU                        : 48
+Organization                              :
+OSArchitecture                            : 64-bit
+OSLanguage                                : 1033
+OSProductSuite                            : 256
+PAEEnabled                                :
+PlusProductID                             :
+PlusVersionNumber                         :
+PortableOperatingSystem                   : False
+Primary                                   : True
+ProductType                               : 1
+RegisteredUser                            : Jeff Hicks
+SerialNumber                              : 00330-50000-00000-AAOEM
+ServicePackMajorVersion                   : 0
+ServicePackMinorVersion                   : 0
+SuiteMask                                 : 272
+SystemDevice                              : \Device\HarddiskVolume5
+SystemDirectory                           : C:\WINDOWS\system32
+SystemDrive                               : C:
+WindowsDirectory                          : C:\WINDOWS
+PSComputerName                            :
+CimClass                                  : root/cimv2:Win32_OperatingSystem
+CimInstanceProperties                     : {Caption, Description, InstallDate, Name...}
+CimSystemProperties                       : Microsoft.Management.Infrastructure.CimSystemProperties
+
+
+
+PS C:\> 129MB
+135266304
+PS C:\> get-volume c
+
+DriveLetter FriendlyName FileSystemType DriveType HealthStatus OperationalStatus SizeRemaining      Size
+----------- ------------ -------------- --------- ------------ ----------------- -------------      ----
+C           Windows      NTFS           Fixed     Healthy      OK                    131.13 GB 237.23 GB
+
+
+PS C:\> stop-transcript
+**********************
+Windows PowerShell transcript end
+End time: 20190919024851
+**********************
