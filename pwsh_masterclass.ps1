@@ -190,3 +190,16 @@ else {
 }
 
 #endregion disk history
+
+
+
+$host.UI.RawUI.WindowTitle
+$host.UI.RawUI
+
+# Set default for commands to require mandatory parameter
+$PSDefaultParameterValues.Add("get-eventlog:logname","system")
+$PSDefaultParameterValues
+
+Get-EventLog -Newest 10
+
+
