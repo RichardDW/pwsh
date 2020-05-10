@@ -9,7 +9,9 @@ function Test-myVB {
 [cmdletbinding()]
 param()
 
-Write-Output "This is for tyesting Verbosing"
+Write-Output "This is for testing Verbosing"
 Write-Verbose -Message " This is a verbose message"
 
 }
+
+Write-Output
