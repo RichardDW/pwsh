@@ -14,8 +14,12 @@
 .PARAMETER <Description>
  Use this parameter for the description field to be used in the AD Security Group
  If not entered the default will be used; Grants access to GPO: 'gpoFullName'
-.PARAMETER <csv> This is a mandatory parameter
+.PARAMETER <csv>
  This is the path to the CSV file, which contains the template to be used for the creation of the security groups
+ There are 3 templates to choose from; Standard, Extended and Test.
+ Standard template creates the .us group and .gs groups for each region.
+ Extended template creates the same as Syandard template and additional .gs groups for support teams in the (sub) regions
+ Test template creates a .us group and a .gs and .ls group in the eu domain
 .EXAMPLE
  Create-GPOSecGrp -gpoFullName XXX-Global-W10TestGPO -gpoCleanName Windows10TestGPO -Description "Used for exception in Edge settings" -csv "\path\to\csvfile.csv"
 .EXAMPLE
@@ -26,7 +30,6 @@ This will create Security Groups with a name of xx.gpo.W10TestGPO.xx and the def
 
 
 # Parameters
-
 # Options for the New-ADGroup
 # -Name ri.gpo.W10ScriptHardeningExclude.us
 # -Name eu.gpo.W10ScriptHardeningExclude.gs
@@ -53,19 +56,20 @@ This will create Security Groups with a name of xx.gpo.W10TestGPO.xx and the def
 Param(
   [Parameter(Mandatory=$true)]
   [string]$gpoFullName,
-  [string]$gpoCleanName,
-  [string]$Description,
-  [Parameter(Mandatory=$true)]
-  [string]$csv
-    # add GPO Clean Name
+  [string]$gpoCleanName = $gpoFullName.Split("-")[-1],
+  [string]$Description = "Grants access to GPO: $gpoFullName",
+  [ValidateSet("Standard","Extended","Test")]
+  [Alias("CSVFile","CSVTemplate")]
+  [string]$TemplateForm = "Standard"
 )
 
 # +++++++++ Comment out following block when running from command line ++++++++++++
-$gpoFullName = "XXX-Global-W10XXTestSecGrpDummyX"
-$Description = "Grants access to GPO: $gpoFullName"
+#$gpoFullName = "XXX-Global-W10XXTestSecGrpDummyX"
+#$Description = "Grants access to GPO: $gpoFullName"
 # Read in the template for creating AD Security groups
 # Test file
-$csv = "C:\Temp\SecGroupTemplateTest.csv"
+#$csvPath = "C:\Temp\SecGroupTemplateTest.csv"
+#$csv = "TemplateBasic.csv"
 # Prod file BASIC
 #$csv = "C:\Temp\SecGroupTemplateBasic.csv"
 # Prod file EXTENDED
@@ -73,39 +77,47 @@ $csv = "C:\Temp\SecGroupTemplateTest.csv"
 #  ------ Comment out following block when running from command line --------------
 
 # If gpoCleanName not entered extract from gpoFullName
-If ($gpoCleanName -eq "") {
-  $gpoCleanName = $gpoFullName.Split("-")[-1]
-}
+#If ($gpoCleanName -eq "") {
+#  $gpoCleanName = $gpoFullName.Split("-")[-1]
+#}
 
 # if Description is not entered use default
-If ($Description -eq "") {
-  $Description = "Grants access to GPO: $gpoFullName"
-}
+#If ($Description -eq "") {
+#  $Description = "Grants access to GPO: $gpoFullName"
+#}
+
+$csv = Switch ($TemplateForm)
+   {
+     Standard { 'SecGrpTempl_Stnd_Rnet.csv' }
+     Extended { 'SecGrpTempl_Extd_Rnet.csv' }
+     Test     { 'SecGrpTempl_Test_Rnet.csv' }
+     }
+
+$TemplateFile = "$PSScriptRoot\\$csv"
 
 # Test if cvs file exists
-If (-Not (Test-Path -Path $csv)) {
-  Write-Error -Message "Path to CSV file not found, try again"
+If (-Not (Test-Path -Path $TemplateFile)) {
+  Write-Error -Message "CSV file not found, try again"
   Exit
 }
 
 #Process CSV
-$Template = Import-Csv -Path $csv -Delimiter ";"
+$Template = Import-Csv -Path $TemplateFile -Delimiter ";"
 
 
-# List of DC's per domain
+# List of DC for each domain
 #$DC_NET    = "BSTS111035.rabonet.com"
 #$DC_NET_EU = "BSTS111031.eu.rabonet.com"
 #$DC_NET_AM = "BXTS111134.am.rabonet.com"
 #$DC_NET_AP = "BXTS111132.ap.rabonet.com"
 #$DC_NET_OC = "BXTS111133.oc.rabonet.com"
 
-# Use following command to get a DC per domain
+# get a DC for each domain
 $DC_NET    = [string](Get-ADDomainController -Discover -DomainName rabonet.com).HostName
 $DC_NET_EU = [string](Get-ADDomainController -Discover -DomainName eu.rabonet.com).HostName
 $DC_NET_AM = [string](Get-ADDomainController -Discover -DomainName am.rabonet.com).HostName
 $DC_NET_AP = [string](Get-ADDomainController -Discover -DomainName ap.rabonet.com).HostName
 $DC_NET_OC = [string](Get-ADDomainController -Discover -DomainName oc.rabonet.com).HostName
-
 
 # Set Security Group clean name
 function Set-SecGrpCleanName {
@@ -116,6 +128,7 @@ function Set-SecGrpCleanName {
 
 # Determine the Universal Security Group
 function Get-UniversalGroup {
+
 
 }# function Get-UniversalGroup
 

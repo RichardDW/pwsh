@@ -1,18 +1,38 @@
-﻿$myCIM = Get-CimInstance -ClassName Win32_Product 
-$myCIM | Where-Object Name -like "*Edge*"
+﻿Param(
+  [Parameter(Mandatory=$true)]
+  [string]$gpoFullName,
+  [string]$gpoCleanName = $gpoFullName.Split("-")[-1],
+  [string]$Description = "Grants access to GPO: $gpoFullName",
+  [ValidateSet("Standard","Extended","Test")]
+  [Alias("CSVFile","CSVTemplate")]
+  [string]$TemplateForm = "Standard"
+)
 
-# select from Win32Reg_AddRemovePrograms
+$gpoFullName
+write-host "\n"
+$gpoCleanName
+write-host "\n"
+$Description
+write-host "\n"
+$csv
+write-host "\n"
 
-# select from CIM_Datafile
+$csv = Switch ($TemplateForm)
+   {
+     Standard { 'TemplStnd.csv' }
+     Extended { 'TemplExtd.csv' }
+     Test     { 'TemplTest.csv' }
+     }
 
-Get-CimInstance -ClassName Win32Reg_AddRemovePrograms
+$TemplateFile = "$PSScriptRoot\\$csv"
+$TemplateFile
 
-Get-CimInstance -ClassName CIM_Datafile
+# Test if cvs file exists
+If (-Not (Test-Path -Path $TemplateFile)) {
+  Write-Error -Message "CSV file not found, try again"
+  Exit
+}
 
-Get-WmiObject -Class Win32Reg_AddRemovePrograms
-
-Get-WmiObject -Class Win32_Product 
-
-$itemCount = 50
-
-Write-Output $itemcount
+#Process CSV
+$Template = Import-Csv -Path $TemplateFile -Delimiter ";"
+$Template

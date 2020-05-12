@@ -1,0 +1,19 @@
+OldValue,NewValue
+http://swg-pac.eu.rabonet.com/swg/swg-prod.pac,http://swg-pac.eu.rabodev.com/swg/swg-dev.pac
+http://swg-pac.oc.rabonet.com/swg/swg-prod.pac,http://swg-pac.oc.rabonet.com/swg/swg-dev.pac
+am.rabonet.com\Domain Users,am.rabodev.com\Domain Users
+eu.rabonet.com\Domain Users,eu.rabodev.com\Domain Users
+oc.rabonet.com\Domain Users,oc.rabodev.com\Domain Users
+RABONETOC\oc.res.InternetAccessUAT.gs,RABODEVOC\oc.res.InternetAccessUAT.gs
+RABONETEU\eur.mgt.W10Localadmins.ls,RABODEVEU\eur.mgt.W10Localadmins.ls
+RABONETEU\eu.svcVDIFactory,RABODEVEU\eu.svcVDIFactory
+RABONETEU\eu.QualysAuthScanWW,RABODEVEU\eu.QAScanWWDev
+RABONETEU\eu.SVCAppSenseMgtCon,
+Rabobank\svcVDIFactory,
+Rabobank\FUN-WINDOWS10-W-S-Local Admin,
+S-1-5-21-1214440339-329068152-725345543-182796,
+eu.rabonet.com,eu.rabodev.com
+am.rabonet.com,am.rabodev.com
+oc.rabonet.com,oc.rabodev.com
+rabonet.com,rabodev.com
+RABONET,RABODEV

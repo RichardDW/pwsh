@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<Collection clsid="{53B533F5-224C-47e3-B01B-CA3B3F3FF4BF}" name="DisableTLS1.1"><Registry clsid="{9CD4B2F4-923D-47f5-A062-E897DD1DAD50}" name="DisabledByDefault " status="DisabledByDefault " image="11" changed="2019-08-20 10:03:32" uid="{E801EE2B-7818-4C73-8A0B-C8163484689D}"><Properties action="D" displayDecimal="1" default="0" hive="HKEY_LOCAL_MACHINE" key="SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Client" name="DisabledByDefault " type="REG_DWORD" value="00000001"/></Registry>
+	<Registry clsid="{9CD4B2F4-923D-47f5-A062-E897DD1DAD50}" name="DisabledByDefault " status="DisabledByDefault " image="11" changed="2019-08-20 10:04:37" uid="{8B42DD9C-CF9D-4816-B48B-F1C7D784499E}"><Properties action="D" displayDecimal="1" default="0" hive="HKEY_LOCAL_MACHINE" key="SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server" name="DisabledByDefault " type="REG_DWORD" value="00000001"/></Registry>
+	<Registry clsid="{9CD4B2F4-923D-47f5-A062-E897DD1DAD50}" name="Enabled " status="Enabled " image="11" changed="2019-08-20 10:05:49" uid="{D80E73F9-E9F4-4947-920C-519206C47F44}"><Properties action="D" displayDecimal="1" default="0" hive="HKEY_LOCAL_MACHINE" key="SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Client" name="Enabled " type="REG_DWORD" value="00000000"/></Registry>
+	<Registry clsid="{9CD4B2F4-923D-47f5-A062-E897DD1DAD50}" name="Enabled " status="Enabled " image="11" changed="2019-08-20 10:06:39" uid="{500E11DD-FE22-408F-A8CA-B1FC69EE192F}"><Properties action="D" displayDecimal="1" default="0" hive="HKEY_LOCAL_MACHINE" key="SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server" name="Enabled " type="REG_DWORD" value="00000000"/></Registry>
+	<Registry clsid="{9CD4B2F4-923D-47f5-A062-E897DD1DAD50}" name="SSLVersionMin" status="SSLVersionMin" image="6" changed="2019-08-20 10:07:50" uid="{DA466F22-4D0A-49B8-A943-378B157B7C1D}"><Properties action="R" displayDecimal="0" default="0" hive="HKEY_LOCAL_MACHINE" key="SOFTWARE\Policies\Google\Chrome" name="SSLVersionMin" type="REG_SZ" value="tls1.1"/></Registry>
+</Collection>
+
+
+<Registry clsid="{9CD4B2F4-923D-47f5-A062-E897DD1DAD50}" name="SSLVersionMin" status="SSLVersionMin" image="6" changed="2019-08-21 08:46:55" uid="{706160E7-39AE-471B-A066-6C0DEA2BB48C}" desc="WX-1568 Disable TLS 1.0 for Pilot test users" removePolicy="1" bypassErrors="1"><Properties action="R" displayDecimal="0" default="0" hive="HKEY_LOCAL_MACHINE" key="SOFTWARE\Policies\Google\Chrome" name="SSLVersionMin" type="REG_SZ" value="tls1.1"/></Registry>
+
+
+SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Client
+
+SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Clie
+
+Create key HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1
+
+Create key HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Client
+
+Create key HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
+
+
+
+<Collection clsid="{53B533F5-224C-47e3-B01B-CA3B3F3FF4BF}" name="DisableTLS1.1" changed="2019-08-21 08:53:12" uid="{340338B5-DD7A-4A30-B816-583F874D6BFE}" desc="US-843213 Pilot workstation disable TLS 1.1" bypassErrors="1"><Registry clsid="{9CD4B2F4-923D-47f5-A062-E897DD1DAD50}" name="TLS 1.1" status="TLS 1.1" image="5" bypassErrors="1" changed="2019-08-21 09:08:58" uid="{B4CF1D64-67FD-48CB-B6E7-5B016DE96BE0}"><Properties action="C" displayDecimal="0" default="0" hive="HKEY_LOCAL_MACHINE" key="SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols" name="TLS 1.1" type="REG_SZ" value=""/></Registry>
+	<Registry clsid="{9CD4B2F4-923D-47f5-A062-E897DD1DAD50}" name="Client" status="Client" image="5" changed="2019-08-21 09:08:17" uid="{2125722E-C554-4295-8BC2-4C7840276BF3}"><Properties action="C" displayDecimal="0" default="0" hive="HKEY_LOCAL_MACHINE" key="SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1" name="Client" type="REG_SZ" value=""/></Registry>
+	<Registry clsid="{9CD4B2F4-923D-47f5-A062-E897DD1DAD50}" name="Server" status="Server" image="5" changed="2019-08-21 09:10:16" uid="{192B2E81-627B-4CEA-9A37-CF62D8CD885E}"><Properties action="C" displayDecimal="0" default="0" hive="HKEY_LOCAL_MACHINE" key="SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1" name="Server" type="REG_SZ" value=""/></Registry>
+	<Registry clsid="{9CD4B2F4-923D-47f5-A062-E897DD1DAD50}" name="DisabledByDefault " status="DisabledByDefault" image="11" changed="2019-08-21 08:55:31" uid="{94FA92AE-41E8-47CB-AC19-C43A920FB265}" bypassErrors="1" removePolicy="1"><Properties action="R" displayDecimal="1" default="0" hive="HKEY_LOCAL_MACHINE" key="SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Client" name="DisabledByDefault" type="REG_DWORD" value="00000001"/></Registry>
+	<Registry clsid="{9CD4B2F4-923D-47f5-A062-E897DD1DAD50}" name="DisabledByDefault " status="DisabledByDefault " image="11" changed="2019-08-20 10:04:37" uid="{8B42DD9C-CF9D-4816-B48B-F1C7D784499E}"><Properties action="R" displayDecimal="1" default="0" hive="HKEY_LOCAL_MACHINE" key="SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server" name="DisabledByDefault " type="REG_DWORD" value="00000001"/></Registry>
+	<Registry clsid="{9CD4B2F4-923D-47f5-A062-E897DD1DAD50}" name="Enabled " status="Enabled " image="11" changed="2019-08-20 10:05:49" uid="{D80E73F9-E9F4-4947-920C-519206C47F44}"><Properties action="R" displayDecimal="1" default="0" hive="HKEY_LOCAL_MACHINE" key="SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Client" name="Enabled " type="REG_DWORD" value="00000000"/></Registry>
+	<Registry clsid="{9CD4B2F4-923D-47f5-A062-E897DD1DAD50}" name="Enabled " status="Enabled " image="11" changed="2019-08-20 10:06:39" uid="{500E11DD-FE22-408F-A8CA-B1FC69EE192F}"><Properties action="R" displayDecimal="1" default="0" hive="HKEY_LOCAL_MACHINE" key="SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server" name="Enabled " type="REG_DWORD" value="00000000"/></Registry>
+	<Registry clsid="{9CD4B2F4-923D-47f5-A062-E897DD1DAD50}" name="SSLVersionMin" status="SSLVersionMin" image="6" changed="2019-08-20 10:07:50" uid="{DA466F22-4D0A-49B8-A943-378B157B7C1D}"><Properties action="R" displayDecimal="0" default="0" hive="HKEY_LOCAL_MACHINE" key="SOFTWARE\Policies\Google\Chrome" name="SSLVersionMin" type="REG_SZ" value="tls1.2"/></Registry>
+</Collection>
+
+
+
+
+<Collection clsid="{53B533F5-224C-47e3-B01B-CA3B3F3FF4BF}" name="DisableTLS1.1" changed="2019-08-21 08:53:12" uid="{340338B5-DD7A-4A30-B816-583F874D6BFE}" desc="US-843213 Pilot workstation disable TLS 1.1" bypassErrors="1"><Registry clsid="{9CD4B2F4-923D-47f5-A062-E897DD1DAD50}" name="TLS 1.1" status="TLS 1.1" image="5" bypassErrors="1" changed="2019-08-21 09:08:58" uid="{B4CF1D64-67FD-48CB-B6E7-5B016DE96BE0}"><Properties action="C" displayDecimal="0" default="0" hive="HKEY_LOCAL_MACHINE" key="SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols" name="TLS 1.1" type="REG_SZ" value=""/></Registry>
+	<Registry clsid="{9CD4B2F4-923D-47f5-A062-E897DD1DAD50}" name="Client" status="Client" image="5" changed="2019-08-21 09:08:17" uid="{2125722E-C554-4295-8BC2-4C7840276BF3}"><Properties action="C" displayDecimal="0" default="0" hive="HKEY_LOCAL_MACHINE" key="SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1" name="Client" type="REG_SZ" value=""/></Registry>
+	<Registry clsid="{9CD4B2F4-923D-47f5-A062-E897DD1DAD50}" name="Server" status="Server" image="5" changed="2019-08-21 09:10:16" uid="{192B2E81-627B-4CEA-9A37-CF62D8CD885E}"><Properties action="C" displayDecimal="0" default="0" hive="HKEY_LOCAL_MACHINE" key="SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1" name="Server" type="REG_SZ" value=""/></Registry>
+	<Registry clsid="{9CD4B2F4-923D-47f5-A062-E897DD1DAD50}" name="DisabledByDefault " status="DisabledByDefault" image="11" changed="2019-08-21 09:18:08" uid="{37DCA7E7-4C14-4020-AF1F-0BB47FB9C431}" bypassErrors="1"><Properties action="R" displayDecimal="1" default="0" hive="HKEY_LOCAL_MACHINE" key="SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Client" name="DisabledByDefault" type="REG_DWORD" value="00000001"/></Registry>
+	<Registry clsid="{9CD4B2F4-923D-47f5-A062-E897DD1DAD50}" name="DisabledByDefault " status="DisabledByDefault " image="11" changed="2019-08-20 10:04:37" uid="{8B42DD9C-CF9D-4816-B48B-F1C7D784499E}"><Properties action="R" displayDecimal="1" default="0" hive="HKEY_LOCAL_MACHINE" key="SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server" name="DisabledByDefault " type="REG_DWORD" value="00000001"/></Registry>
+	<Registry clsid="{9CD4B2F4-923D-47f5-A062-E897DD1DAD50}" name="Enabled " status="Enabled " image="11" changed="2019-08-20 10:05:49" uid="{D80E73F9-E9F4-4947-920C-519206C47F44}"><Properties action="R" displayDecimal="1" default="0" hive="HKEY_LOCAL_MACHINE" key="SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Client" name="Enabled " type="REG_DWORD" value="00000000"/></Registry>
+	<Registry clsid="{9CD4B2F4-923D-47f5-A062-E897DD1DAD50}" name="Enabled " status="Enabled " image="11" changed="2019-08-20 10:06:39" uid="{500E11DD-FE22-408F-A8CA-B1FC69EE192F}"><Properties action="R" displayDecimal="1" default="0" hive="HKEY_LOCAL_MACHINE" key="SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server" name="Enabled " type="REG_DWORD" value="00000000"/></Registry>
+	<Registry clsid="{9CD4B2F4-923D-47f5-A062-E897DD1DAD50}" name="SSLVersionMin" status="SSLVersionMin" image="6" changed="2019-08-20 10:07:50" uid="{DA466F22-4D0A-49B8-A943-378B157B7C1D}"><Properties action="R" displayDecimal="0" default="0" hive="HKEY_LOCAL_MACHINE" key="SOFTWARE\Policies\Google\Chrome" name="SSLVersionMin" type="REG_SZ" value="tls1.2"/></Registry>
+</Collection>
+
+
+
+ri.mgt.Windows10DisableTLS10.us
+eu.res.Windows10DisableTLS10.ls
+
+
