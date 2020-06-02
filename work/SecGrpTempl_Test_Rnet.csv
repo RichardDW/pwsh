@@ -1,0 +1,4 @@
+Domain;Groups;Delegation;MemberOff;LDAP
+rabonet.com;ri.gpo.[GPO_CLEAN_NAME].us;;;OU=Application,OU=Groups,DC=rabonet,DC=com
+eu.rabonet.com;eu.gpo.[GPO_CLEAN_NAME].ls;eu-role-Windows 10 Production Admins;;OU=Application,OU=Groups,DC=eu,DC=rabonet,DC=com
+eu.rabonet.com;eu.gpo.[GPO_CLEAN_NAME].gs;eu-role-Windows 10 Production Admins;ri.gpo.[GPO_CLEAN_NAME].us;OU=Application,OU=Groups,DC=eu,DC=rabonet,DC=com

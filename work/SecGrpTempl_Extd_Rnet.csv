@@ -1,0 +1,13 @@
+Domain;Groups;Delegation;MemberOff;LDAP
+rabonet.com;ri.gpo.[GPO_CLEAN_NAME].us;;;OU=Application,OU=Groups,DC=rabonet,DC=com
+eu.rabonet.com;eu.gpo.[GPO_CLEAN_NAME].ls;eu-role-Windows 10 Production Admins;;OU=Application,OU=Groups,DC=eu,DC=rabonet,DC=com
+eu.rabonet.com;eu.gpo.[GPO_CLEAN_NAME].gs;eu-role-Windows 10 Production Admins;ri.gpo.[GPO_CLEAN_NAME].us;OU=Application,OU=Groups,DC=eu,DC=rabonet,DC=com
+am.rabonet.com;naw.gpo.[GPO_CLEAN_NAME].gs;am.mgt.WorkstationSupport.gs;ri.gpo.[GPO_CLEAN_NAME].us;OU=Application,OU=Groups,DC=am,DC=rabonet,DC=com
+am.rabonet.com;raf.gpo.[GPO_CLEAN_NAME].gs;am.mgt.WorkstationSupport.gs;ri.gpo.[GPO_CLEAN_NAME].us;OU=Application,OU=Groups,DC=am,DC=rabonet,DC=com
+am.rabonet.com;sao.gpo.[GPO_CLEAN_NAME].gs;sao.mgt.ITWorkplace.gs;ri.gpo.[GPO_CLEAN_NAME].us;OU=Application,OU=Groups,DC=am,DC=rabonet,DC=com
+am.rabonet.com;bue.gpo.[GPO_CLEAN_NAME].gs;bue.mgt.WorkstationSupport.gs;ri.gpo.[GPO_CLEAN_NAME].us;OU=Application,OU=Groups,DC=am,DC=rabonet,DC=com
+am.rabonet.com;scl.gpo.[GPO_CLEAN_NAME].gs;scl.mgt.WorkstationSupport.gs;ri.gpo.[GPO_CLEAN_NAME].us;OU=Application,OU=Groups,DC=am,DC=rabonet,DC=com
+ap.rabonet.com;bom.gpo.[GPO_CLEAN_NAME].gs;bom.mgt.WorkstationSupport.gs;ri.gpo.[GPO_CLEAN_NAME].us;OU=Application,OU=Groups,DC=ap,DC=rabonet,DC=com
+ap.rabonet.com;hkg.gpo.[GPO_CLEAN_NAME].gs;hkg.mgt.WorkstationSupport.gs;ri.gpo.[GPO_CLEAN_NAME].us;OU=Application,OU=Groups,DC=ap,DC=rabonet,DC=com
+ap.rabonet.com;sin.gpo.[GPO_CLEAN_NAME].gs;ap.mgt.WorkstationSupport.gs;ri.gpo.[GPO_CLEAN_NAME].us;OU=Application,OU=Groups,DC=ap,DC=rabonet,DC=com
+oc.rabonet.com;ranzg.gpo.[GPO_CLEAN_NAME].gs;oc.mgt.WorkplaceSupportAdmins.gs;ri.gpo.[GPO_CLEAN_NAME].us;OU=Application,OU=Groups,DC=oc,DC=rabonet,DC=com

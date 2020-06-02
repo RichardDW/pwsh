@@ -86,12 +86,24 @@ Param(
 #  $Description = "Grants access to GPO: $gpoFullName"
 #}
 
-$csv = Switch ($TemplateForm)
-   {
-     Standard { 'SecGrpTempl_Stnd_Rnet.csv' }
-     Extended { 'SecGrpTempl_Extd_Rnet.csv' }
-     Test     { 'SecGrpTempl_Test_Rnet.csv' }
-     }
+If ( (Get-ADDomain).Forest -eq "rabodev.com" ) {
+
+    $csv = Switch ($TemplateForm)
+       {
+         Standard { 'SecGrpTempl_Stnd_Rdev.csv' }
+         Extended { 'SecGrpTempl_Extd_Rdev.csv' }
+         Test     { 'SecGrpTempl_Test_Rdev.csv' }
+         }
+}
+Else {
+    $csv = Switch ($TemplateForm)
+       {
+         Standard { 'SecGrpTempl_Stnd_Rnet.csv' }
+         Extended { 'SecGrpTempl_Extd_Rnet.csv' }
+         Test     { 'SecGrpTempl_Test_Rnet.csv' }
+         }
+}
+
 
 $TemplateFile = "$PSScriptRoot\\$csv"
 
@@ -105,19 +117,25 @@ If (-Not (Test-Path -Path $TemplateFile)) {
 $Template = Import-Csv -Path $TemplateFile -Delimiter ";"
 
 
-# List of DC for each domain
-#$DC_NET    = "BSTS111035.rabonet.com"
-#$DC_NET_EU = "BSTS111031.eu.rabonet.com"
-#$DC_NET_AM = "BXTS111134.am.rabonet.com"
-#$DC_NET_AP = "BXTS111132.ap.rabonet.com"
-#$DC_NET_OC = "BXTS111133.oc.rabonet.com"
-
 # get a DC for each domain
-$DC_NET    = [string](Get-ADDomainController -Discover -DomainName rabonet.com).HostName
-$DC_NET_EU = [string](Get-ADDomainController -Discover -DomainName eu.rabonet.com).HostName
-$DC_NET_AM = [string](Get-ADDomainController -Discover -DomainName am.rabonet.com).HostName
-$DC_NET_AP = [string](Get-ADDomainController -Discover -DomainName ap.rabonet.com).HostName
-$DC_NET_OC = [string](Get-ADDomainController -Discover -DomainName oc.rabonet.com).HostName
+If ( (Get-ADDomain).Forest -eq "rabodev.com" ) {
+
+    $DC_DEV    = [string](Get-ADDomainController -Discover -DomainName rabodev.com).HostName
+    $DC_DEV_EU = [string](Get-ADDomainController -Discover -DomainName eu.rabodev.com).HostName
+    $DC_DEV_AM = [string](Get-ADDomainController -Discover -DomainName am.rabodev.com).HostName
+    $DC_DEV_OC = [string](Get-ADDomainController -Discover -DomainName oc.rabodev.com).HostName
+
+}
+
+Else {
+
+    $DC_NET    = [string](Get-ADDomainController -Discover -DomainName rabonet.com).HostName
+    $DC_NET_EU = [string](Get-ADDomainController -Discover -DomainName eu.rabonet.com).HostName
+    $DC_NET_AM = [string](Get-ADDomainController -Discover -DomainName am.rabonet.com).HostName
+    $DC_NET_AP = [string](Get-ADDomainController -Discover -DomainName ap.rabonet.com).HostName
+    $DC_NET_OC = [string](Get-ADDomainController -Discover -DomainName oc.rabonet.com).HostName
+
+}
 
 # Set Security Group clean name
 function Set-SecGrpCleanName {
@@ -142,6 +160,10 @@ function Get-ServerAD ([string]$domain) {
     am.rabonet.com { $DC_NET_AM }
     ap.rabonet.com { $DC_NET_AP }
     oc.rabonet.com { $DC_NET_OC }
+    rabodev.com { $DC_DEV }
+    eu.rabodev.com { $DC_DEV_EU }
+    am.rabodev.com { $DC_DEV_AM }
+    oc.rabodev.com { $DC_DEV_OC }
    }# switch
    return $serverAD
 
@@ -237,9 +259,15 @@ function Add-SecGrpMember {
 
     # Add the Global security group as a member to the Universal Security group
     Write-Host "Now adding Global Group $MyGSGroup to Universal Group $secGroupUniversal" -ForegroundColor Cyan
-    Write-Host "Using server $DC_NET"  -ForegroundColor Cyan
-    Add-ADGroupMember -Identity $secGroupUniversal -Members $MyGSGroup -Server $DC_NET
-
+    
+    If ( (Get-ADDomain).Forest -eq "rabodev.com" ) {
+        Write-Host "Using server $DC_DEV"  -ForegroundColor Cyan
+        Add-ADGroupMember -Identity $secGroupUniversal -Members $MyGSGroup -Server $DC_DEV
+    }
+    Else {
+        Write-Host "Using server $DC_NET"  -ForegroundColor Cyan
+        Add-ADGroupMember -Identity $secGroupUniversal -Members $MyGSGroup -Server $DC_NET
+    }
 
     #$LDAP = $secgrp.LDAP
     #Full LDAP NAME of Group
@@ -267,10 +295,10 @@ function Set-DelegationRights {
   # Create variable for PS Drive to be created
   $psDriveName = Switch ($secgrp.Domain)
     {
-      eu.rabonet.com { 'AD_EU' }
-      am.rabonet.com { 'AD_AM' }
-      ap.rabonet.com { 'AD_AP' }
-      oc.rabonet.com { 'AD_OC' }
+      {($_ -eq "eu.rabonet.com") -or ($_ -eq "eu.rabodev.com")} { 'AD_EU' }
+      {($_ -eq "am.rabonet.com") -or ($_ -eq "am.rabodev.com")} { 'AD_AM' }
+      {($_ -eq "ap.rabonet.com") -or ($_ -eq "ap.rabodev.com")} { 'AD_AP' }
+      {($_ -eq "oc.rabonet.com") -or ($_ -eq "oc.rabodev.com")} { 'AD_OC' }
     }# switch
 
   Write-Host "PsDrive to be created is: $psDriveName"
@@ -293,6 +321,7 @@ function Set-DelegationRights {
   Write-Host "Done with setting ACL"
 
   }# foreach
+  Write-Output "Done with Delegation Rights"
 }# function Set-DelegationRights
 
 
@@ -301,7 +330,7 @@ function Main {
   Create-SecGroup
   # Sleep a bit for AD Synchro
   Write-Host "Now sleeping for 90 seconds for AD Warp signature to enter Enterprise wormhole" -ForegroundColor DarkYellow
-  Start-Sleep -Seconds 90
+  Start-Sleep -Seconds 60
   # Add (make member) the global security groups to the universal group
   Add-SecGrpMember
   # Set the ManagedBy Rights
